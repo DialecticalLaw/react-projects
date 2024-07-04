@@ -16,7 +16,6 @@ export class App extends Component {
     prevState: Readonly<typeof this.state>
   ): Promise<void> {
     if (this.state.searchTerm !== prevState.searchTerm) {
-      console.log('a');
       this.setState({ items: await this.api.searchItems(this.state.searchTerm) });
     }
   }

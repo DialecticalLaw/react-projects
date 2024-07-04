@@ -9,19 +9,20 @@ export class Search extends Component<{
   render(): ReactNode {
     return (
       <section className={styles.search_section}>
-        <input ref={this.inputRef} className={styles.input} type="search" placeholder="Type something..." />
-
-        <button
-          onClick={() => {
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
             if (this.inputRef.current) {
               this.props.changeState({ searchTerm: this.inputRef.current.value });
             }
           }}
-          className={styles.btn}
-          type="button"
+          className={styles.search_form}
         >
-          Search
-        </button>
+          <input ref={this.inputRef} className={styles.input} type="search" placeholder="Type something..." />
+          <button className={styles.btn} type="submit">
+            Search
+          </button>
+        </form>
       </section>
     );
   }
