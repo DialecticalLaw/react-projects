@@ -7,7 +7,10 @@
   justify-content: center;
   align-items: center;
   gap: 4rem;
-  width: 100%;
+}
+
+.label {
+  position: relative;
 }
 
 .input {
@@ -20,6 +23,16 @@
   border-bottom: 0.2rem solid #808080;
   font-family: Kreadon;
   transition: 0.3s;
+}
+
+.validation_error {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  color: #ff0000;
+  font-size: 1.5rem;
+  font-family: Kreadon;
 }
 
 .btn {

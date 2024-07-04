@@ -4,7 +4,19 @@ import styles from './Search.module.css';
 export class Search extends Component<{
   changeState: React.Dispatch<React.SetStateAction<{ searchTerm: string }>>;
 }> {
-  inputRef = createRef<HTMLInputElement>();
+  private inputRef = createRef<HTMLInputElement>();
+  state = { isValid: true };
+
+  private changeSearchTerm() {
+    const inputValue = this.inputRef.current?.value;
+
+    if (inputValue !== undefined) {
+      if (inputValue[inputValue.length - 1] !== ' ' || inputValue === '') {
+        this.setState({ isValid: true });
+        this.props.changeState({ searchTerm: inputValue });
+      } else this.setState({ isValid: false });
+    }
+  }
 
   render(): ReactNode {
     return (
@@ -12,13 +24,20 @@ export class Search extends Component<{
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (this.inputRef.current) {
-              this.props.changeState({ searchTerm: this.inputRef.current.value });
-            }
+            this.changeSearchTerm();
           }}
           className={styles.search_form}
         >
-          <input ref={this.inputRef} className={styles.input} type="search" placeholder="Type something..." />
+          <label className={styles.label}>
+            <input
+              ref={this.inputRef}
+              className={styles.input}
+              type="search"
+              placeholder="Type something..."
+            />
+            {!this.state.isValid && <p className={styles.validation_error}>Remove the trailing spaces</p>}
+          </label>
+
           <button className={styles.btn} type="submit">
             Search
           </button>
