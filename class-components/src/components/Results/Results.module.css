@@ -17,7 +17,6 @@
   gap: 1rem;
   width: 31%;
   padding: 2.5rem 1.5rem;
-  font-size: 2rem;
   color: #ffffff;
   border-radius: 1rem;
   background: #000000;
@@ -41,16 +40,17 @@
 
 .item_prop,
 .item_title {
-  font-weight: bold;
   text-align: center;
 }
 
 .item_title {
   color: var(--accent-color);
-  font-size: 3rem;
+  font-size: 3.5rem;
   letter-spacing: 0.5rem;
+  font-weight: bold;
 }
 
-.item_value {
-  font-weight: normal;
+.item_prop {
+  font-size: 2rem;
+  letter-spacing: 0;
 }

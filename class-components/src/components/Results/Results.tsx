@@ -8,10 +8,10 @@ export class Results extends Component<{ items: Starship[] }> {
       <section className={styles.results_section}>
         {this.props.items.map((item) => {
           return (
-            <div className={styles.item}>
+            <div key={item.name} className={styles.item}>
               <h1 className={styles.item_title}>{item.name}</h1>
 
-              <p className={styles.item_prop}>
+              <p className={`${styles.item_prop} ${styles.item_title}`}>
                 Model: <span className={styles.item_value}>{item.model}</span>
               </p>
 

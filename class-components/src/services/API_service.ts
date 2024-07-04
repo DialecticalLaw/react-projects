@@ -18,9 +18,18 @@ export class API_service {
 
   public async getItems(page: number): Promise<Starship[] | undefined> {
     try {
-      const response = await fetch(`${this.baseUrl}?page=${page}`, { method: 'GET' });
+      const response = await fetch(`${this.baseUrl}?page=${page}`);
       const result: APIResponse = await response.json();
-      console.log(result);
+      return result.results;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  public async searchItems(searchTerm: string): Promise<Starship[] | undefined> {
+    try {
+      const response = await fetch(`${this.baseUrl}?search=${searchTerm}`);
+      const result: APIResponse = await response.json();
       return result.results;
     } catch (error) {
       console.error(error);
