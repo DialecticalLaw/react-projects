@@ -20,14 +20,15 @@
   color: #ffffff;
   border-radius: 1rem;
   background: #000000;
-  background: radial-gradient(circle, #3d3d3d 0%, rgb(36, 36, 36) 70%);
-  box-shadow: 0 0 2rem 0.5rem #0e0e0e;
+  background: radial-gradient(circle, #111111 30%, rgb(36, 36, 36) 90%);
+  box-shadow: 0 0 1rem 0.1rem #040404;
   cursor: default;
   transition: 0.26s cubic-bezier(0.175, 0.885, 0.45, 1.475);
 }
 
 .item:hover {
-  transform: scale(1.07);
+  transform: scale(1.05);
+  box-shadow: 0 0 1rem 0.1rem var(--accent-color);
 }
 
 .item_title {
