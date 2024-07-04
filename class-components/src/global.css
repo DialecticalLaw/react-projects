@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Kreadon;
+  src: url('./assets/fonts/KreadonLightest.ttf');
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,11 +14,11 @@ html {
 }
 
 :root {
-  --accent-color: rgb(177, 51, 255);
+  --accent-color: rgb(195, 43, 255);
 }
 
 body {
-  --color: rgba(114, 114, 114, 0.033);
+  --color: rgba(114, 114, 114, 0.041);
   background-color: #191a1a;
   background-image: linear-gradient(
       0deg,
@@ -39,7 +44,7 @@ body {
       transparent 77%,
       transparent
     );
-  background-size: 5rem 5rem;
+  background-size: 10rem 10rem;
 }
 
 #root {
