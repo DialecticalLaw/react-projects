@@ -8,6 +8,10 @@ html {
   font-size: 10px;
 }
 
+:root {
+  --accent-color: rgb(177, 51, 255);
+}
+
 body {
   --color: rgba(114, 114, 114, 0.033);
   background-color: #191a1a;
@@ -36,10 +40,6 @@ body {
       transparent
     );
   background-size: 5rem 5rem;
-}
-
-:root {
-  --accent-color: rgb(177, 51, 255);
 }
 
 #root {
