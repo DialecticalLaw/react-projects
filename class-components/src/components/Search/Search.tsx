@@ -1,11 +1,13 @@
 import { Component, createRef, ReactNode } from 'react';
 import styles from './Search.module.css';
+import { Input } from '../Input/Input';
+import { Button } from '../Button/Button';
 
 export class Search extends Component<{
   changeState: React.Dispatch<React.SetStateAction<{ searchTerm: string }>>;
   initialSearchTerm: string;
 }> {
-  private inputRef = createRef<HTMLInputElement>();
+  inputRef = createRef<HTMLInputElement>();
   state = { isValid: true };
 
   private changeSearchTerm() {
@@ -36,19 +38,13 @@ export class Search extends Component<{
           className={styles.search_form}
         >
           <label className={styles.label}>
-            <input
-              ref={this.inputRef}
-              className={styles.input}
-              type="search"
-              placeholder="Type something..."
-              autoFocus
-            />
+            <Input placeholder="Type something..." type="search" refLink={this.inputRef} autoFocus />
             {!this.state.isValid && <p className={styles.validation_error}>Remove the trailing spaces</p>}
           </label>
 
-          <button className={styles.btn} type="submit">
+          <Button styles={[styles.btn]} type="submit">
             Search
-          </button>
+          </Button>
         </form>
       </section>
     );

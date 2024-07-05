@@ -3,6 +3,7 @@ import { Search } from './components/Search/Search';
 import { Results } from './components/Results/Results';
 import { API_service, Starship } from './services/API_service';
 import { Loader } from './components/Loader/Loader';
+import { ErrorThrower } from './components/ErrorThrower/ErrorThrower';
 
 export class App extends Component {
   private api = new API_service();
@@ -36,6 +37,7 @@ export class App extends Component {
     ) : (
       <>
         <Search initialSearchTerm={this.state.searchTerm} changeState={this.setState.bind(this)} />
+        <ErrorThrower />
         <Results items={this.state.items} />
       </>
     );
