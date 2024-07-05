@@ -3,6 +3,7 @@ import styles from './Search.module.css';
 
 export class Search extends Component<{
   changeState: React.Dispatch<React.SetStateAction<{ searchTerm: string }>>;
+  initialSearchTerm: string;
 }> {
   private inputRef = createRef<HTMLInputElement>();
   state = { isValid: true };
@@ -13,9 +14,15 @@ export class Search extends Component<{
     if (inputValue !== undefined) {
       if (inputValue[inputValue.length - 1] !== ' ' || inputValue === '') {
         this.setState({ isValid: true });
+        localStorage.setItem('dialecticallaw-search-term', inputValue);
         this.props.changeState({ searchTerm: inputValue });
       } else this.setState({ isValid: false });
     }
+  }
+
+  componentDidUpdate(): void {
+    const input = this.inputRef.current;
+    if (input) input.value = this.props.initialSearchTerm;
   }
 
   render(): ReactNode {

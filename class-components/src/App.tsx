@@ -8,7 +8,8 @@ export class App extends Component {
   state: { items: Starship[]; searchTerm: string } = { items: [], searchTerm: '' };
 
   async componentDidMount(): Promise<void> {
-    this.setState({ items: await this.api.getItems(1) });
+    const prevSearchTerm = localStorage.getItem('dialecticallaw-search-term') || '';
+    this.setState({ items: await this.api.searchItems(prevSearchTerm), searchTerm: prevSearchTerm });
   }
 
   async componentDidUpdate(
@@ -23,7 +24,7 @@ export class App extends Component {
   render(): ReactNode {
     return (
       <>
-        <Search changeState={this.setState.bind(this)} />
+        <Search initialSearchTerm={this.state.searchTerm} changeState={this.setState.bind(this)} />
         <Results items={this.state.items} />
       </>
     );
