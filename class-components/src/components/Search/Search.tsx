@@ -41,6 +41,7 @@ export class Search extends Component<{
               className={styles.input}
               type="search"
               placeholder="Type something..."
+              autoFocus
             />
             {!this.state.isValid && <p className={styles.validation_error}>Remove the trailing spaces</p>}
           </label>
