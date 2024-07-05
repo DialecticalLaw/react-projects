@@ -20,7 +20,7 @@ export class Search extends Component<{
     }
   }
 
-  componentDidUpdate(): void {
+  componentDidMount(): void {
     const input = this.inputRef.current;
     if (input) input.value = this.props.initialSearchTerm;
   }
