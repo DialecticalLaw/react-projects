@@ -10,7 +10,7 @@ export class ErrorBoundary extends React.Component<PropsWithChildren> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.log(error, info.componentStack);
+    console.error(error, info.componentStack);
   }
 
   render() {
