@@ -1,52 +1,52 @@
-import { Component, createRef, ReactNode } from 'react';
+import { useRef, useState } from 'react';
 import styles from './Search.module.css';
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 
-export class Search extends Component<{
+export function Search({
+  saveSearchTerm,
+  initialSearchTerm
+}: {
   saveSearchTerm: (searchTerm: string) => void;
   initialSearchTerm: string;
-}> {
-  inputRef = createRef<HTMLInputElement>();
-  state = { isValid: true };
+}) {
+  const [isValid, setValid] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  private changeSearchTerm() {
-    const inputValue = this.inputRef.current?.value;
+  const changeSearchTerm = () => {
+    const inputValue = inputRef.current?.value;
+    if (inputValue === undefined) return;
 
-    if (inputValue !== undefined) {
-      if (inputValue[inputValue.length - 1] !== ' ' || inputValue === '') {
-        this.setState({ isValid: true });
-        localStorage.setItem('dialecticallaw-search-term', inputValue);
-        this.props.saveSearchTerm(inputValue);
-      } else this.setState({ isValid: false });
-    }
-  }
+    if (inputValue[inputValue.length - 1] !== ' ' || inputValue === '') {
+      setValid(true);
+      saveSearchTerm(inputValue);
+    } else setValid(false);
+  };
 
-  componentDidMount(): void {
-    const input = this.inputRef.current;
-    if (input) input.value = this.props.initialSearchTerm;
-  }
+  return (
+    <section className={styles.search_section}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          changeSearchTerm();
+        }}
+        className={styles.search_form}
+      >
+        <label className={styles.label}>
+          <Input
+            refLink={inputRef}
+            placeholder="Type something..."
+            type="search"
+            defaultValue={initialSearchTerm}
+            autoFocus
+          />
+          {!isValid && <p className={styles.validation_error}>Remove the trailing spaces</p>}
+        </label>
 
-  render(): ReactNode {
-    return (
-      <section className={styles.search_section}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            this.changeSearchTerm();
-          }}
-          className={styles.search_form}
-        >
-          <label className={styles.label}>
-            <Input placeholder="Type something..." type="search" refLink={this.inputRef} autoFocus />
-            {!this.state.isValid && <p className={styles.validation_error}>Remove the trailing spaces</p>}
-          </label>
-
-          <Button classes={[styles.btn]} type="submit">
-            Search
-          </Button>
-        </form>
-      </section>
-    );
-  }
+        <Button classes={[styles.btn]} type="submit">
+          Search
+        </Button>
+      </form>
+    </section>
+  );
 }
