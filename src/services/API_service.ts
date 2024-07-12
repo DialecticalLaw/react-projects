@@ -10,7 +10,7 @@ export interface Planet {
   climate: string;
 }
 
-interface APIResponse {
+export interface ApiResponse {
   count: number;
   next: string | null;
   previous: string | null;
@@ -19,13 +19,13 @@ interface APIResponse {
 
 const BASE_URL = 'https://swapi.dev/api/planets/';
 
-export async function searchItems(searchTerm: string): Promise<Planet[]> {
+export async function searchItems(searchTerm: string): Promise<ApiResponse | undefined> {
   try {
     const response = await fetch(`${BASE_URL}?search=${searchTerm}`);
-    const result: APIResponse = await response.json();
-    return result.results;
+    const result: ApiResponse = await response.json();
+    console.log(result);
+    return result;
   } catch (error) {
     console.error(error);
-    return [];
   }
 }
