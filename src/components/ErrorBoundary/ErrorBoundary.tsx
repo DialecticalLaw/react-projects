@@ -1,6 +1,6 @@
 import React, { ErrorInfo, PropsWithChildren } from 'react';
 import styles from './ErrorBoundary.module.css';
-import { Button } from '../components/Button/Button';
+import { Button } from '../Button/Button';
 
 export class ErrorBoundary extends React.Component<PropsWithChildren> {
   state = { hasError: false };
