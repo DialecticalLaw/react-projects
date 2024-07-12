@@ -11,7 +11,7 @@ export function ErrorThrower() {
 
   return (
     <form className={styles.wrapper}>
-      <Input refLink={inputRef} styles={[styles.input]} type="text" placeholder="Error message" />
+      <Input refLink={inputRef} classes={[styles.input]} type="text" placeholder="Error message" />
       <Button
         onClick={(e) => {
           e.preventDefault();

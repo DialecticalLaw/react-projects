@@ -1,22 +1,25 @@
-import { Component, ReactNode } from 'react';
 import styles from './Input.module.css';
 
-export class Input extends Component<{
+export function Input({
+  type,
+  placeholder,
+  classes,
+  autoFocus,
+  refLink
+}: {
   type: 'text' | 'search';
   placeholder: string;
-  styles?: string[];
+  classes?: string[];
   autoFocus?: boolean;
   refLink?: React.RefObject<HTMLInputElement>;
-}> {
-  render(): ReactNode {
-    return (
-      <input
-        className={`${styles.input} ${this.props.styles?.join(' ')}`}
-        ref={this.props.refLink}
-        type={this.props.type}
-        placeholder={this.props.placeholder}
-        autoFocus={this.props.autoFocus}
-      />
-    );
-  }
+}) {
+  return (
+    <input
+      className={`${styles.input} ${classes?.join(' ')}`}
+      ref={refLink}
+      type={type}
+      placeholder={placeholder}
+      autoFocus={autoFocus}
+    />
+  );
 }
