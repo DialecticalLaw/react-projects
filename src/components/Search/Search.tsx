@@ -42,7 +42,7 @@ export class Search extends Component<{
             {!this.state.isValid && <p className={styles.validation_error}>Remove the trailing spaces</p>}
           </label>
 
-          <Button styles={[styles.btn]} type="submit">
+          <Button classes={[styles.btn]} type="submit">
             Search
           </Button>
         </form>

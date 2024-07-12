@@ -18,7 +18,7 @@ export function ErrorThrower() {
           setIsError(true);
         }}
         type="submit"
-        styles={[styles.btn]}
+        classes={[styles.btn]}
       >
         Throw Error
       </Button>
