@@ -17,16 +17,15 @@ interface APIResponse {
   results: Planet[];
 }
 
-export class API_service {
-  private baseUrl = 'https://swapi.dev/api/planets/';
+const BASE_URL = 'https://swapi.dev/api/planets/';
 
-  public async searchItems(searchTerm: string): Promise<Planet[] | undefined> {
-    try {
-      const response = await fetch(`${this.baseUrl}?search=${searchTerm}`);
-      const result: APIResponse = await response.json();
-      return result.results;
-    } catch (error) {
-      console.error(error);
-    }
+export async function searchItems(searchTerm: string): Promise<Planet[]> {
+  try {
+    const response = await fetch(`${BASE_URL}?search=${searchTerm}`);
+    const result: APIResponse = await response.json();
+    return result.results;
+  } catch (error) {
+    console.error(error);
+    return [];
   }
 }

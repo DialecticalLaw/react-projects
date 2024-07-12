@@ -4,7 +4,7 @@ import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 
 export class Search extends Component<{
-  changeState: React.Dispatch<React.SetStateAction<{ searchTerm: string }>>;
+  saveSearchTerm: (searchTerm: string) => void;
   initialSearchTerm: string;
 }> {
   inputRef = createRef<HTMLInputElement>();
@@ -17,7 +17,7 @@ export class Search extends Component<{
       if (inputValue[inputValue.length - 1] !== ' ' || inputValue === '') {
         this.setState({ isValid: true });
         localStorage.setItem('dialecticallaw-search-term', inputValue);
-        this.props.changeState({ searchTerm: inputValue });
+        this.props.saveSearchTerm(inputValue);
       } else this.setState({ isValid: false });
     }
   }
