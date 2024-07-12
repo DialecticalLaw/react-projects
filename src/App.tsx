@@ -1,13 +1,13 @@
 import { Component, ReactNode } from 'react';
 import { Search } from './components/Search/Search';
 import { Results } from './components/Results/Results';
-import { API_service, Starship } from './services/API_service';
+import { API_service, Film } from './services/API_service';
 import { Loader } from './components/Loader/Loader';
 import { ErrorThrower } from './components/ErrorThrower/ErrorThrower';
 
 export class App extends Component {
   private api = new API_service();
-  state: { items: Starship[]; searchTerm: string; isLoading: boolean } = {
+  state: { items: Film[]; searchTerm: string; isLoading: boolean } = {
     items: [],
     searchTerm: '',
     isLoading: false

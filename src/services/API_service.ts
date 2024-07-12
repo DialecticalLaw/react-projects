@@ -1,22 +1,22 @@
-export interface Starship {
-  name: string;
-  model: string;
-  crew: string;
-  manufacturer: string;
-  max_atmosphering_speed: string;
+export interface Film {
+  title: string;
+  director: string;
+  release_date: string;
+  opening_crawl: string;
+  producer: string;
 }
 
 interface APIResponse {
   count: number;
   next: string | null;
   previous: string | null;
-  results: Starship[];
+  results: Film[];
 }
 
 export class API_service {
-  private baseUrl = 'https://swapi.dev/api/starships/';
+  private baseUrl = 'https://swapi.dev/api/films/';
 
-  public async searchItems(searchTerm: string): Promise<Starship[] | undefined> {
+  public async searchItems(searchTerm: string): Promise<Film[] | undefined> {
     try {
       const response = await fetch(`${this.baseUrl}?search=${searchTerm}`);
       const result: APIResponse = await response.json();

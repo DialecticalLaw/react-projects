@@ -1,31 +1,21 @@
 import { Component, ReactNode } from 'react';
 import styles from './Results.module.css';
-import { Starship } from '../../services/API_service';
+import { Film } from '../../services/API_service';
 
-export class Results extends Component<{ items: Starship[] }> {
+export class Results extends Component<{ items: Film[] }> {
   render(): ReactNode {
     return (
       <section className={styles.results_section}>
         {this.props.items.map((item) => {
           return (
-            <div key={item.name} className={styles.item}>
-              <h1 className={styles.item_title}>{item.name}</h1>
-
-              <p className={`${styles.item_prop} ${styles.item_title}`}>
-                Model: <span className={styles.item_value}>{item.model}</span>
-              </p>
+            <div key={item.release_date} className={styles.item}>
+              <h1 className={styles.item_title}>{item.title}</h1>
 
               <p className={styles.item_prop}>
-                Manufacturer: <span className={styles.item_value}>{item.manufacturer}</span>
+                Director: <span className={styles.item_value}>{item.director}</span>
               </p>
-
               <p className={styles.item_prop}>
-                Max atmospheric speed:{' '}
-                <span className={styles.item_value}>{item.max_atmosphering_speed}</span>
-              </p>
-
-              <p className={styles.item_prop}>
-                Crew: <span className={styles.item_value}>{item.crew}</span>
+                Release: <span className={styles.item_value}>{item.release_date}</span>
               </p>
             </div>
           );
