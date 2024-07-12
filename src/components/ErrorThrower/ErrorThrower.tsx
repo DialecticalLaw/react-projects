@@ -1,29 +1,27 @@
-import { Component, createRef, ReactNode } from 'react';
+import { useRef, useState } from 'react';
 import styles from './ErrorThrower.module.css';
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 
-export class ErrorThrower extends Component {
-  inputRef = createRef<HTMLInputElement>();
-  state = { isError: false };
+export function ErrorThrower() {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isError, setIsError] = useState(false);
 
-  render(): ReactNode {
-    if (this.state.isError) throw new Error(this.inputRef.current?.value);
+  if (isError) throw new Error(inputRef.current?.value);
 
-    return (
-      <form className={styles.wrapper}>
-        <Input refLink={this.inputRef} styles={[styles.input]} type="text" placeholder="Error message" />
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            this.setState({ isError: true });
-          }}
-          type="submit"
-          styles={[styles.btn]}
-        >
-          Throw Error
-        </Button>
-      </form>
-    );
-  }
+  return (
+    <form className={styles.wrapper}>
+      <Input refLink={inputRef} styles={[styles.input]} type="text" placeholder="Error message" />
+      <Button
+        onClick={(e) => {
+          e.preventDefault();
+          setIsError(true);
+        }}
+        type="submit"
+        styles={[styles.btn]}
+      >
+        Throw Error
+      </Button>
+    </form>
+  );
 }
