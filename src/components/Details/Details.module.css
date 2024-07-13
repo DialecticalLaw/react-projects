@@ -2,7 +2,15 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  visibility: hidden;
+  width: 0;
+  opacity: 0;
   font-family: Kreadon;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.active {
   animation: wrapper-appear 0.5s forwards;
 }
 
@@ -11,6 +19,8 @@
     width: 0;
   }
   to {
-    width: 25%;
+    width: 30%;
+    opacity: 1;
+    visibility: visible;
   }
 }

@@ -29,3 +29,13 @@ export async function searchItems(searchTerm: string, page: number): Promise<Api
     console.error(error);
   }
 }
+
+export async function searchItem(id: string): Promise<Planet | undefined> {
+  try {
+    const response = await fetch(`${BASE_URL}${id}`);
+    const result: Planet = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+}

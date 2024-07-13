@@ -22,7 +22,12 @@ export function App() {
     } else {
       const fetchItems = async () => {
         setIsLoading(true);
-        setSearchParams({ page: page.toString() });
+
+        setSearchParams((prev) => {
+          prev.set('page', page.toString());
+          return prev;
+        });
+
         const response = await searchItems(searchTerm, page);
         if (response) setApiResponse(response);
         setIsLoading(false);
@@ -35,9 +40,7 @@ export function App() {
   const prev = apiResponse?.previous || null;
   const next = apiResponse?.next || null;
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Search initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
       <ErrorThrower />
@@ -46,7 +49,7 @@ export function App() {
         <>
           <p className={styles.text}>Page: {page}</p>
           <div className={styles.wrapper}>
-            <Results items={apiResponse.results} />
+            {isLoading ? <Loader /> : <Results items={apiResponse.results} />}
             <Outlet />
           </div>
         </>
