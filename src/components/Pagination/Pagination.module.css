@@ -4,6 +4,8 @@
 }
 
 .btn {
+  pointer-events: none;
+  user-select: none;
   opacity: 0.5;
   display: flex;
   justify-content: center;
@@ -22,6 +24,7 @@
 }
 
 .active {
+  pointer-events: all;
   opacity: 1;
   cursor: pointer;
 }

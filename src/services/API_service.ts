@@ -19,9 +19,9 @@ export interface ApiResponse {
 
 const BASE_URL = 'https://swapi.dev/api/planets/';
 
-export async function searchItems(searchTerm: string): Promise<ApiResponse | undefined> {
+export async function searchItems(searchTerm: string, page: number | null): Promise<ApiResponse | undefined> {
   try {
-    const response = await fetch(`${BASE_URL}?search=${searchTerm}`);
+    const response = await fetch(`${BASE_URL}?search=${searchTerm}${page ? `&page=${page}` : ''}`);
     const result: ApiResponse = await response.json();
     console.log(result);
     return result;

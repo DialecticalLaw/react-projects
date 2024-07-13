@@ -10,18 +10,19 @@ import { Pagination } from './components/Pagination/Pagination';
 export function App() {
   const [apiResponse, setApiResponse] = useState<ApiResponse>();
   const [searchTerm, saveSearchTerm] = useSearchTerm();
+  const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchItems = async () => {
       setIsLoading(true);
-      const response = await searchItems(searchTerm);
+      const response = await searchItems(searchTerm, page);
       if (response) setApiResponse(response);
       setIsLoading(false);
     };
 
     fetchItems();
-  }, [searchTerm]);
+  }, [searchTerm, page]);
 
   return isLoading ? (
     <Loader />
@@ -30,7 +31,7 @@ export function App() {
       <Search initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
       <ErrorThrower />
       {apiResponse?.results && <Results items={apiResponse.results} />}
-      {apiResponse && <Pagination prev={apiResponse.previous} next={apiResponse.next} />}
+      {apiResponse && <Pagination prev={apiResponse.previous} next={apiResponse.next} setPage={setPage} />}
     </>
   );
 }
