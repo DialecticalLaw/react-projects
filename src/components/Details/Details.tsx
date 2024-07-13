@@ -27,6 +27,7 @@ export function Details() {
     <section className={`${styles.wrapper} ${isActive ? styles.active : ''}`}>
       {item ? (
         <>
+          <h2 className={styles.title}>{item.name}</h2>
           <p>Climate: {item.climate}</p>
           <p>Diameter: {item.diameter}</p>
           <p>Gravity: {item.gravity}</p>

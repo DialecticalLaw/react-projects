@@ -15,6 +15,8 @@ html {
 
 :root {
   --accent-color: rgb(76, 168, 255);
+  --accent-color-dark: rgb(30, 75, 118);
+  --accent-color-transparent: rgba(33, 83, 130, 0.4);
 }
 
 body {

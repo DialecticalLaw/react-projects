@@ -1,17 +1,38 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   gap: 1.5rem;
   visibility: hidden;
-  width: 0;
   opacity: 0;
+  width: 0;
+  padding: 2rem;
+  background: radial-gradient(
+    circle at -8.9% 51.2%,
+    var(--accent-color-dark) 0%,
+    var(--accent-color-dark) 15.9%,
+    var(--accent-color-transparent) 15.9%,
+    var(--accent-color-transparent) 24.4%,
+    rgb(48, 48, 48) 24.5%,
+    rgb(32, 32, 32) 66%
+  );
+  border-radius: 2rem;
+  box-shadow: 0 0 2rem 0.1rem #000000b6;
   font-family: Kreadon;
   color: #ffffff;
+  text-align: center;
   font-size: 2rem;
 }
 
 .active {
   animation: wrapper-appear 0.5s forwards;
+}
+
+.title {
+  color: var(--accent-color);
+  font-weight: bold;
+  letter-spacing: 0.5rem;
 }
 
 @keyframes wrapper-appear {
