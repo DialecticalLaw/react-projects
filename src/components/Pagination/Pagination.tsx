@@ -9,22 +9,22 @@ export function Pagination({
   next: string | null;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  if (!prev && !next) return;
-
   return (
-    <div className={styles.wrapper}>
+    <form className={styles.wrapper}>
       <button
-        onClick={() => setPage((page) => page - 1)}
+        type="button"
+        onClick={() => setPage((prev) => prev - 1)}
         className={`${styles.btn} ${prev ? styles.active : ''}`}
       >
         &larr;
       </button>
       <button
-        onClick={() => setPage((page) => page + 1)}
+        type="button"
+        onClick={() => setPage((prev) => prev + 1)}
         className={`${styles.btn} ${next ? styles.active : ''}`}
       >
         &rarr;
       </button>
-    </div>
+    </form>
   );
 }

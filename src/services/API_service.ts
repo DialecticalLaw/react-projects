@@ -8,6 +8,7 @@ export interface Planet {
   gravity: string;
   diameter: string;
   climate: string;
+  url: string;
 }
 
 export interface ApiResponse {
@@ -19,11 +20,10 @@ export interface ApiResponse {
 
 const BASE_URL = 'https://swapi.dev/api/planets/';
 
-export async function searchItems(searchTerm: string, page: number | null): Promise<ApiResponse | undefined> {
+export async function searchItems(searchTerm: string, page: number): Promise<ApiResponse | undefined> {
   try {
-    const response = await fetch(`${BASE_URL}?search=${searchTerm}${page ? `&page=${page}` : ''}`);
+    const response = await fetch(`${BASE_URL}?search=${searchTerm}&page=${page}`);
     const result: ApiResponse = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.error(error);

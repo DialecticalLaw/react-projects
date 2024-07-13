@@ -22,8 +22,8 @@
   background: #000000;
   background: radial-gradient(circle, #111111 30%, rgb(36, 36, 36) 90%);
   box-shadow: 0 0 1rem 0.1rem #040404;
-  cursor: default;
   transition: 0.26s cubic-bezier(0.175, 0.885, 0.45, 1.475);
+  cursor: pointer;
 }
 
 .item:hover {
