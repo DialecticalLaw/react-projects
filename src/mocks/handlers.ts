@@ -1,8 +1,9 @@
-import { DefaultBodyType, http, HttpResponse, PathParams } from 'msw';
+import { DefaultBodyType, delay, http, HttpResponse, PathParams } from 'msw';
 import { ApiResponse, Planet } from '../services/API_service';
 
 export const handlers = [
-  http.get<PathParams, DefaultBodyType, Planet>('https://swapi.dev/api/planets/1', () => {
+  http.get<PathParams, DefaultBodyType, Planet>('https://swapi.dev/api/planets/1', async () => {
+    await delay(500);
     return HttpResponse.json({
       name: 'Tatooine',
       population: '200000',
