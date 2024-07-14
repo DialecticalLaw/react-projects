@@ -4,9 +4,8 @@
   justify-content: flex-start;
   align-items: center;
   gap: 1.5rem;
-  visibility: hidden;
   opacity: 0;
-  width: 0;
+  width: 30%;
   padding: 2rem;
   background: radial-gradient(
     circle at -8.9% 51.2%,
@@ -23,9 +22,8 @@
   color: #ffffff;
   text-align: center;
   font-size: 2rem;
-}
-
-.active {
+  transform: translateX(100%);
+  transform-origin: right;
   animation: wrapper-appear 0.5s forwards;
 }
 
@@ -36,12 +34,8 @@
 }
 
 @keyframes wrapper-appear {
-  from {
-    width: 0;
-  }
   to {
-    width: 30%;
+    transform: translateX(0);
     opacity: 1;
-    visibility: visible;
   }
 }

@@ -15,6 +15,7 @@ export function App() {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')));
+  const details = searchParams.get('details');
 
   useEffect(() => {
     if (!page) {
@@ -45,17 +46,18 @@ export function App() {
       <Search initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
       <ErrorThrower />
 
-      {apiResponse?.results?.length ? (
-        <>
-          <p className={styles.text}>Page: {page}</p>
-          <div className={styles.wrapper}>
-            {isLoading ? <Loader /> : <Results items={apiResponse.results} />}
-            <Outlet />
-          </div>
-        </>
-      ) : (
-        <p className={styles.text}>Nothing was found</p>
-      )}
+      <p className={styles.text}>Page: {page}</p>
+      <div className={styles.wrapper}>
+        {!isLoading && !apiResponse ? (
+          <p className={styles.text}>Nothing was found</p>
+        ) : (
+          <>
+            {isLoading ? <Loader /> : apiResponse && <Results items={apiResponse.results} />}
+            {details && <Outlet />}
+          </>
+        )}
+      </div>
+
       {apiResponse && <Pagination prev={prev} next={next} setPage={setPage} />}
     </>
   );

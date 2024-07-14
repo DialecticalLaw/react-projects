@@ -6,26 +6,26 @@ import { Loader } from '../Loader/Loader';
 
 export function Details() {
   const [searchParams] = useSearchParams();
-  const [isActive, setActive] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [item, setItem] = useState<Planet>();
+  const detailsId = searchParams.get('details');
 
   useEffect(() => {
-    const id = searchParams.get('details');
-
-    if (id) {
+    if (detailsId) {
+      setLoading(true);
       const getItem = async () => {
-        setActive(true);
-        const result = await searchItem(id);
+        const result = await searchItem(detailsId);
         setItem(result);
+        setLoading(false);
       };
 
       getItem();
     }
-  }, [searchParams]);
+  }, [detailsId]);
 
   return (
-    <section className={`${styles.wrapper} ${isActive ? styles.active : ''}`}>
-      {item ? (
+    <section className={styles.wrapper}>
+      {!isLoading && item ? (
         <>
           <h2 className={styles.title}>{item.name}</h2>
           <p>Climate: {item.climate}</p>
