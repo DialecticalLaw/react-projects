@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  min-height: 50dvh;
+  width: 100%;
+}
+
+.text {
+  margin: -0.5rem 0 -3.5rem 0;
+  font-size: 2rem;
+  font-family: Kreadon;
+  color: #ffffff;
+}

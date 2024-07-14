@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  gap: 10rem;
+}
+
+.btn {
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 4rem;
+  height: 4rem;
+  padding: 3rem;
+  border: none;
+  outline: none;
+  color: var(--accent-color);
+  border-radius: 50%;
+  font-family: Kreadon;
+  font-size: 4rem;
+  transition: 0.3s;
+}
+
+.active {
+  pointer-events: all;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.btn.active:hover {
+  box-shadow:
+    inset 0 0 1.5rem 0.1rem var(--accent-color),
+    0 0 2.5rem 0.1rem var(--accent-color);
+}
