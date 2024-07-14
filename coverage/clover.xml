@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1720982996008" clover="3.2.0">
-  <project timestamp="1720982996008" name="All files">
+<coverage generated="1720992313496" clover="3.2.0">
+  <project timestamp="1720992313496" name="All files">
     <metrics statements="560" coveredstatements="468" conditionals="70" coveredconditionals="60" methods="27" coveredmethods="16" elements="657" coveredelements="544" complexity="0" loc="560" ncloc="560" packages="17" files="24" classes="24"/>
     <package name="react-projects">
       <metrics statements="27" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
@@ -203,9 +203,9 @@
         <line num="48" count="1" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
         <line num="50" count="1" type="stmt"/>
-        <line num="51" count="1" type="stmt"/>
         <line num="52" count="1" type="stmt"/>
         <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
       </file>
       <file name="Details.tsx" path="C:\Users\User\OneDrive\Документы\my\mainFolder\react-projects\src\components\Details\Details.tsx">
         <metrics statements="50" coveredstatements="50" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
