@@ -5,10 +5,12 @@ import { Button } from '../Button/Button';
 
 export function Search({
   saveSearchTerm,
-  initialSearchTerm
+  initialSearchTerm,
+  isLoading
 }: {
   saveSearchTerm: (searchTerm: string) => void;
   initialSearchTerm: string;
+  isLoading: boolean;
 }) {
   const [isValid, setValid] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,11 +26,11 @@ export function Search({
   };
 
   return (
-    <section className={styles.search_section}>
+    <section className={`${styles.search_section} ${isLoading ? styles.disabled : ''}`}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          changeSearchTerm();
+          if (!isLoading) changeSearchTerm();
         }}
         className={styles.search_form}
       >

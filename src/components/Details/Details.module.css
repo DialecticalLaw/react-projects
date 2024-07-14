@@ -1,12 +1,18 @@
 .wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1.5rem;
-  opacity: 0;
+  gap: 2.5rem;
   width: 30%;
-  padding: 2rem;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  padding: 2rem 2rem 2rem 3rem;
   background: radial-gradient(
     circle at -8.9% 51.2%,
     var(--accent-color-dark) 0%,
@@ -25,6 +31,14 @@
   transform: translateX(100%);
   transform-origin: right;
   animation: wrapper-appear 0.5s forwards;
+}
+
+.close_handler {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
 }
 
 .title {

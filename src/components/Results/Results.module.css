@@ -1,12 +1,17 @@
+.results_section:only-child {
+  width: 100%;
+}
+
 .results_section {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
   gap: 3rem;
-  width: 100%;
-  padding: 2rem;
+  width: 70%;
+  padding: 2rem 4rem 2rem 2rem;
   font-family: Kreadon;
+  transition: 0.5s;
 }
 
 .item {
@@ -41,6 +46,7 @@
 
 .item_prop,
 .item_title {
+  pointer-events: none;
   text-align: center;
 }
 

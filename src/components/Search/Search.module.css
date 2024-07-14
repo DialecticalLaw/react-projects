@@ -1,12 +1,20 @@
 .search_section {
+  position: relative;
   width: 100%;
+  transition: 0.3s;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .search_form {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 4rem;
+  padding: 3rem 0 0 3rem;
 }
 
 .label {

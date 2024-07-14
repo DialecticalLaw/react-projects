@@ -23,12 +23,6 @@ export function App() {
     } else {
       const fetchItems = async () => {
         setIsLoading(true);
-
-        setSearchParams((prev) => {
-          prev.set('page', page.toString());
-          return prev;
-        });
-
         const response = await searchItems(searchTerm, page);
         if (response) setApiResponse(response);
         setIsLoading(false);
@@ -36,14 +30,21 @@ export function App() {
 
       fetchItems();
     }
-  }, [page, searchTerm, setSearchParams]);
+  }, [page, searchTerm]);
+
+  useEffect(() => {
+    setSearchParams((prev) => {
+      prev.set('page', page.toString());
+      return prev;
+    });
+  }, [page, setSearchParams]);
 
   const prev = apiResponse?.previous || null;
   const next = apiResponse?.next || null;
 
   return (
     <>
-      <Search initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
+      <Search isLoading={isLoading} initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
       <ErrorThrower />
 
       <p className={styles.text}>Page: {page}</p>
@@ -58,7 +59,7 @@ export function App() {
         )}
       </div>
 
-      {apiResponse && <Pagination prev={prev} next={next} setPage={setPage} />}
+      {apiResponse && !isLoading && <Pagination prev={prev} next={next} setPage={setPage} />}
     </>
   );
 }
