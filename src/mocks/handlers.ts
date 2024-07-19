@@ -1,5 +1,5 @@
 import { DefaultBodyType, delay, http, HttpResponse, PathParams } from 'msw';
-import { ApiResponse, Planet } from '../services/API_service';
+import { ApiResponse, Planet } from '../services/planets';
 
 export const handlers = [
   http.get<PathParams, DefaultBodyType, Planet>('https://swapi.dev/api/planets/1', async () => {

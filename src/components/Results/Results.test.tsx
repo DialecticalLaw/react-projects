@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Results } from './Results';
-import { Planet } from '../../services/API_service';
 import { MemoryRouter } from 'react-router-dom';
+import { Planet } from '../../services/planets';
 
 describe('Results', () => {
   it('renders the specified number of cards', () => {

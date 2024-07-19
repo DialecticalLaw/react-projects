@@ -1,36 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Search } from './components/Search/Search';
 import { Results } from './components/Results/Results';
-import { ApiResponse, searchItems } from './services/API_service';
 import { Loader } from './components/Loader/Loader';
 import { ErrorThrower } from './components/ErrorThrower/ErrorThrower';
 import { useSearchTerm } from './hooks/useSearchTerm';
 import { Pagination } from './components/Pagination/Pagination';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import styles from './App.module.css';
+import { planetsApi } from './services/planets';
 
 export function App() {
-  const [apiResponse, setApiResponse] = useState<ApiResponse>();
-  const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, saveSearchTerm] = useSearchTerm();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(Number(searchParams.get('page')));
+  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+  const { data, isFetching } = planetsApi.useGetItemsQuery({ searchTerm, page });
   const details = searchParams.get('details');
-
-  useEffect(() => {
-    if (!page) {
-      setPage(1);
-    } else {
-      const fetchItems = async () => {
-        setIsLoading(true);
-        const response = await searchItems(searchTerm, page);
-        if (response) setApiResponse(response);
-        setIsLoading(false);
-      };
-
-      fetchItems();
-    }
-  }, [page, searchTerm]);
 
   useEffect(() => {
     setSearchParams((prev) => {
@@ -39,27 +23,21 @@ export function App() {
     });
   }, [page, setSearchParams]);
 
-  const prev = apiResponse?.previous || null;
-  const next = apiResponse?.next || null;
+  const prev = data?.previous || null;
+  const next = data?.next || null;
 
   return (
     <>
-      <Search isLoading={isLoading} initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
+      <Search isFetching={isFetching} initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
       <ErrorThrower />
 
       <p className={styles.text}>Page: {page}</p>
       <div className={styles.wrapper}>
-        {!isLoading && !apiResponse ? (
-          <p className={styles.text}>Nothing was found</p>
-        ) : (
-          <>
-            {isLoading ? <Loader /> : apiResponse && <Results items={apiResponse.results} />}
-            {details && <Outlet />}
-          </>
-        )}
+        {isFetching ? <Loader /> : <Results items={data?.results} />}
+        {details && <Outlet />}
       </div>
 
-      {apiResponse && !isLoading && <Pagination prev={prev} next={next} setPage={setPage} />}
+      {data && !isFetching && <Pagination prev={prev} next={next} setPage={setPage} />}
     </>
   );
 }

@@ -6,11 +6,11 @@ import { Button } from '../Button/Button';
 export function Search({
   saveSearchTerm,
   initialSearchTerm,
-  isLoading
+  isFetching
 }: {
   saveSearchTerm: (searchTerm: string) => void;
   initialSearchTerm: string;
-  isLoading: boolean;
+  isFetching: boolean;
 }) {
   const [isValid, setValid] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -26,11 +26,11 @@ export function Search({
   };
 
   return (
-    <section className={`${styles.search_section} ${isLoading ? styles.disabled : ''}`}>
+    <section className={`${styles.search_section} ${isFetching ? styles.disabled : ''}`}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!isLoading) changeSearchTerm();
+          if (!isFetching) changeSearchTerm();
         }}
         className={styles.search_form}
       >
