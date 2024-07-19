@@ -1,7 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { planetsApi } from '../services/planets';
 
 export const store = configureStore({
-  reducer: {}
+  reducer: {
+    [planetsApi.reducerPath]: planetsApi.reducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(planetsApi.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;
