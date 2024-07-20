@@ -8,24 +8,28 @@ import { Pagination } from './components/Pagination/Pagination';
 import { Outlet, useSearchParams } from 'react-router-dom';
 import styles from './App.module.css';
 import { planetsApi } from './services/planets';
+import { useAppDispatch } from './store/hooks';
+import { updateItems, updatePage } from './store/slices/page_slice';
 
 export function App() {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
   const { data, isFetching } = planetsApi.useGetItemsQuery({ searchTerm, page });
+  const dispatch = useAppDispatch();
   const details = searchParams.get('details');
 
   useEffect(() => {
-    if (!page) {
-      setPage(1);
-      return;
-    }
+    dispatch(updatePage(page));
     setSearchParams((prev) => {
       prev.set('page', page.toString());
       return prev;
     });
-  }, [page, setSearchParams]);
+  }, [page, setSearchParams, dispatch]);
+
+  useEffect(() => {
+    dispatch(updateItems(data?.results || []));
+  }, [data, dispatch]);
 
   const prev = data?.previous || null;
   const next = data?.next || null;
