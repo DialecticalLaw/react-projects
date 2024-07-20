@@ -17,6 +17,10 @@ export function App() {
   const details = searchParams.get('details');
 
   useEffect(() => {
+    if (!page) {
+      setPage(1);
+      return;
+    }
     setSearchParams((prev) => {
       prev.set('page', page.toString());
       return prev;

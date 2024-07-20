@@ -3,6 +3,8 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import { routerConfig } from '../../routes/routerConfig';
 import { render, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 describe('Details', () => {
   it('clicking on a card opens a detailed card component with correct data and it triggers an additional API call', async () => {
@@ -15,7 +17,11 @@ describe('Details', () => {
     ];
     const user = userEvent.setup();
     const router = createMemoryRouter(routerConfig);
-    const { findByText, getByText } = render(<RouterProvider router={router} />);
+    const { findByText, getByText } = render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
 
     await waitFor(() => {
       const card = getByText('Tatooine').parentElement;
@@ -31,9 +37,13 @@ describe('Details', () => {
   it('loading indicator is displayed while fetching data', async () => {
     const user = userEvent.setup();
     const router = createMemoryRouter(routerConfig);
-    const { findByText, findByAltText } = render(<RouterProvider router={router} />);
+    const { findByText, findByAltText } = render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
 
-    const card = (await findByText('Tatooine')).parentElement;
+    const card = (await findByText('Alderaan')).parentElement;
     user.click(card as HTMLElement);
 
     expect(await findByAltText('loader')).toBeInTheDocument();
@@ -42,7 +52,11 @@ describe('Details', () => {
   it('clicking the close button hides the component', async () => {
     const user = userEvent.setup();
     const router = createMemoryRouter(routerConfig);
-    const { findByText } = render(<RouterProvider router={router} />);
+    const { findByText } = render(
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
 
     const card = (await findByText('Tatooine')).parentElement;
     user.click(card as HTMLElement);
