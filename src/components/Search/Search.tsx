@@ -6,11 +6,13 @@ import { Button } from '../Button/Button';
 export function Search({
   saveSearchTerm,
   initialSearchTerm,
-  isFetching
+  isFetching,
+  setPage
 }: {
   saveSearchTerm: (searchTerm: string) => void;
   initialSearchTerm: string;
   isFetching: boolean;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [isValid, setValid] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,6 +24,7 @@ export function Search({
     if (inputValue[inputValue.length - 1] !== ' ' || inputValue === '') {
       setValid(true);
       saveSearchTerm(inputValue);
+      setPage(1);
     } else setValid(false);
   };
 

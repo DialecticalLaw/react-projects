@@ -28,7 +28,12 @@ export function App() {
 
   return (
     <>
-      <Search isFetching={isFetching} initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
+      <Search
+        setPage={setPage}
+        isFetching={isFetching}
+        initialSearchTerm={searchTerm}
+        saveSearchTerm={saveSearchTerm}
+      />
       <ErrorThrower />
 
       <p className={styles.text}>Page: {page}</p>
