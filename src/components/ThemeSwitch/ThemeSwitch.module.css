@@ -1,0 +1,53 @@
+.absolute_wrapper {
+  z-index: 1;
+  user-select: none;
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  width: 8rem;
+  height: 4rem;
+  padding: 0.5rem;
+  background-color: rgb(50, 50, 50);
+  border-radius: 2rem;
+  box-shadow: 0 0 2rem 0 #0a0a0a;
+  cursor: pointer;
+}
+
+.absolute_wrapper:has(.light) {
+  background-color: rgb(255, 255, 255);
+}
+
+.relative_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.switch {
+  position: absolute;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch.light {
+  background-color: rgb(50, 50, 50);
+  left: calc(100% - 3rem);
+}
+
+.theme_icon {
+  position: absolute;
+  transform: scale(0);
+  transition: 0.3s;
+}
+
+.dark > .theme_icon[alt='moon'] {
+  transform: scale(1);
+}
+
+.light > .theme_icon[alt='sun'] {
+  transform: scale(1);
+}
