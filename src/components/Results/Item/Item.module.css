@@ -1,4 +1,5 @@
 .item {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -6,25 +7,25 @@
   gap: 1rem;
   width: 31%;
   max-width: 50rem;
-  padding: 2.5rem 1.5rem;
+  padding: 4rem 1.5rem 2.5rem 1.5rem;
   color: #ffffff;
   border-radius: 1rem;
+  box-shadow:
+    inset 0 0 0 0 #040404,
+    0 0 2rem 0.5rem #040404;
   background: #000000;
   background: radial-gradient(circle, #111111 30%, rgb(36, 36, 36) 90%);
-  box-shadow: 0 0 1rem 0.1rem #040404;
-  transition: 0.26s cubic-bezier(0.175, 0.885, 0.45, 1.475);
+  transition: 0.45s;
   cursor: pointer;
 }
 
 .item.light {
   background: #ffffff;
   background: radial-gradient(circle, #ffffff 30%, rgb(185, 185, 185) 90%);
-  box-shadow: 0 0 1rem 0.1rem #040404;
 }
 
 .item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 3rem 0.1rem var(--accent-color);
+  box-shadow: inset 0 0 1rem 0 #000000;
 }
 
 .item_title {

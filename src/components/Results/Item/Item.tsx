@@ -4,6 +4,7 @@ import { Planet } from '../../../services/planets';
 import { ThemeContext } from '../../../store/ThemeContext';
 import styles from './Item.module.css';
 import { useSearchParams } from 'react-router-dom';
+import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
 
 export function Item({ item }: { item: Planet }) {
   const [, setSearchParams] = useSearchParams();
@@ -19,6 +20,7 @@ export function Item({ item }: { item: Planet }) {
         })
       }
     >
+      <SelectCheckbox />
       <h1 className={styles.item_title}>{item.name}</h1>
 
       <p className={styles.item_prop}>
