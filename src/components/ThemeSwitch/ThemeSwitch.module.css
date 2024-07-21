@@ -55,14 +55,33 @@
 .theme_icon {
   width: 100%;
   position: absolute;
-  transform: scale(0);
-  transition: 0.3s;
+  opacity: 0;
 }
 
 .dark > .theme_icon[alt='moon'] {
-  transform: scale(1);
+  opacity: 1;
+  animation: appear-left 0.4s forwards;
 }
 
 .light > .theme_icon[alt='sun'] {
-  transform: scale(1);
+  opacity: 1;
+  animation: appear-right 0.4s forwards;
+}
+
+@keyframes appear-left {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes appear-right {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
 }
