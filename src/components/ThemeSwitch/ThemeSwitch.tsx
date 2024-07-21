@@ -4,12 +4,9 @@ import { ThemeContext } from '../../store/ThemeContext';
 import moon from '../../assets/img/moon.svg';
 import sun from '../../assets/img/sun.svg';
 
-export function ThemeSwitch({
-  setTheme
-}: {
-  setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>;
-}) {
-  const theme = useContext(ThemeContext);
+export function ThemeSwitch() {
+  const { theme, setTheme } = useContext(ThemeContext);
+  if (!setTheme) throw new Error('setTheme not provided');
 
   return (
     <div

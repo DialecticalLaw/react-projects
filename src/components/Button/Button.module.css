@@ -14,26 +14,21 @@
   cursor: pointer;
 }
 
-.btn::before {
-  content: '';
-  position: absolute;
-  opacity: 0;
-  bottom: 70%;
-  left: 0;
-  right: 0;
-  width: 80%;
-  height: 40%;
-  margin: 0 auto;
-  border-radius: 2rem;
-  background-color: var(--accent-color);
-  z-index: -1;
-  filter: blur(2.2rem);
-  transform: scale(0);
-  transition: 0.3s;
+.btn.light {
+  box-shadow: 0 0rem 1rem 0.1rem #7c7c7c;
 }
 
 .btn:hover {
+  box-shadow:
+    0 0rem 1rem 0.1rem #090909,
+    0 0 3rem 0 var(--accent-color);
   color: var(--accent-color);
+}
+
+.btn.light:hover {
+  box-shadow:
+    0 0rem 1rem 0.1rem #7c7c7c,
+    0 0 3rem 0 var(--accent-color);
 }
 
 .btn:hover::before {

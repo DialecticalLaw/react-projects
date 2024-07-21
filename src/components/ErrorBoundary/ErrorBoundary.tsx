@@ -16,12 +16,12 @@ export class ErrorBoundary extends React.Component<PropsWithChildren> {
   render() {
     if (this.state.hasError) {
       return (
-        <>
+        <div className={styles.wrapper}>
           <p className={styles.text}>Something went wrong...</p>
           <Button type="button" onClick={() => location.reload()}>
             Refresh the page
           </Button>
-        </>
+        </div>
       );
     }
 

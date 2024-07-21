@@ -9,3 +9,7 @@
   font-family: Kreadon;
   transition: 0.3s;
 }
+
+.input.light {
+  color: #000000;
+}

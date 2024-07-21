@@ -7,14 +7,28 @@
   width: 8rem;
   height: 4rem;
   padding: 0.5rem;
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(70, 70, 70);
   border-radius: 2rem;
-  box-shadow: 0 0 2rem 0 #0a0a0a;
+  box-shadow: inset 0 0 1rem 0 #171717;
+  transition: 0.3s;
   cursor: pointer;
 }
 
+.absolute_wrapper:hover {
+  box-shadow:
+    inset 0 0 1rem 0 #171717,
+    0 0 1rem 0 var(--accent-color);
+}
+
 .absolute_wrapper:has(.light) {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(230, 230, 230);
+  box-shadow: inset 0 0 1.5rem 0 #8c8c8c;
+}
+
+.absolute_wrapper:has(.light):hover {
+  box-shadow:
+    inset 0 0 1rem 0 #8c8c8c,
+    0 0 1.5rem 0 var(--accent-color);
 }
 
 .relative_wrapper {
@@ -39,6 +53,7 @@
 }
 
 .theme_icon {
+  width: 100%;
   position: absolute;
   transform: scale(0);
   transition: 0.3s;

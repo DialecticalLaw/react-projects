@@ -10,14 +10,13 @@ import styles from './App.module.css';
 import { planetsApi } from './services/planets';
 import { useAppDispatch } from './store/hooks';
 import { updateItems, updatePage } from './store/slices/page_slice';
-import { ThemeContext } from './store/ThemeContext';
+import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { ThemeSwitch } from './components/ThemeSwitch/ThemeSwitch';
 
 export function App() {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const { data, isFetching } = planetsApi.useGetItemsQuery({ searchTerm, page });
   const dispatch = useAppDispatch();
   const details = searchParams.get('details');
@@ -38,8 +37,8 @@ export function App() {
   const next = data?.next || null;
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <ThemeSwitch setTheme={setTheme} />
+    <ErrorBoundary>
+      <ThemeSwitch />
       <Search
         setPage={setPage}
         isFetching={isFetching}
@@ -55,6 +54,6 @@ export function App() {
       </div>
 
       {data && !isFetching && <Pagination prev={prev} next={next} setPage={setPage} />}
-    </ThemeContext.Provider>
+    </ErrorBoundary>
   );
 }

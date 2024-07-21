@@ -1,14 +1,15 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './Details.module.css';
-import { useCallback, useRef } from 'react';
+import { useCallback, useContext, useRef } from 'react';
 import { Loader } from '../Loader/Loader';
 import { Button } from '../Button/Button';
 import { planetsApi } from '../../services/planets';
+import { ThemeContext } from '../../store/ThemeContext';
 
 export function Details() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const detailsRef = useRef<HTMLElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const { theme } = useContext(ThemeContext);
   const detailsId = searchParams.get('details');
   const { data, isLoading } = planetsApi.useGetItemByIdQuery(detailsId);
 
@@ -22,19 +23,19 @@ export function Details() {
   return (
     <>
       <div className={styles.close_handler} onClick={handleClose} />
-      <section ref={detailsRef} className={styles.wrapper}>
+      <section className={`${styles.wrapper} ${theme === 'light' ? styles.light : ''}`}>
         {isLoading ? (
           <Loader />
         ) : (
           data && (
             <>
               <h2 className={styles.title}>{data.name}</h2>
-              <p>Climate: {data.climate}</p>
-              <p>Diameter: {data.diameter}</p>
-              <p>Gravity: {data.gravity}</p>
-              <p>Surface water: {data.surface_water}</p>
-              <p>Rotation period: {data.rotation_period}</p>
-              <p>Orbital period: {data.orbital_period}</p>
+              <p className={styles.text}>Climate: {data.climate}</p>
+              <p className={styles.text}>Diameter: {data.diameter}</p>
+              <p className={styles.text}>Gravity: {data.gravity}</p>
+              <p className={styles.text}>Surface water: {data.surface_water}</p>
+              <p className={styles.text}>Rotation period: {data.rotation_period}</p>
+              <p className={styles.text}>Orbital period: {data.orbital_period}</p>
 
               <Button refLink={closeBtnRef} onClick={handleClose} type="button">
                 Close

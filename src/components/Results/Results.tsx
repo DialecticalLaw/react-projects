@@ -2,9 +2,12 @@ import styles from './Results.module.css';
 import { useSearchParams } from 'react-router-dom';
 import { extractId } from '../../helpers/extractId';
 import { Planet } from '../../services/planets';
+import { useContext } from 'react';
+import { ThemeContext } from '../../store/ThemeContext';
 
 export function Results({ items }: { items?: Planet[] }) {
   const [, setSearchParams] = useSearchParams();
+  const { theme } = useContext(ThemeContext);
 
   if (!items || !items.length) return <p className={styles.text}>Nothing was found</p>;
 
@@ -14,7 +17,7 @@ export function Results({ items }: { items?: Planet[] }) {
         return (
           <div
             key={item.name}
-            className={styles.item}
+            className={`${styles.item} ${theme === 'light' ? styles.light : ''}`}
             onClick={() =>
               setSearchParams((prev) => {
                 prev.set('details', extractId(item.url));

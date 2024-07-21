@@ -1,3 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: auto;
+}
+
 .text {
   font-family: Kreadon;
   font-size: 2rem;
