@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "format:fix": "prettier --write .",
     "test": "vitest run --coverage",
+    "vitest-preview": "vitest-preview",
     "prepare": "husky"
   },
   "dependencies": {
@@ -40,7 +41,8 @@
     "prettier": "^3.3.2",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
-    "vitest": "^2.0.2"
+    "vitest": "^2.0.2",
+    "vitest-preview": "^0.0.1"
   },
   "msw": {
     "workerDirectory": [

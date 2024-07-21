@@ -1,3 +1,46 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5rem;
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0 auto;
+  --color: rgba(114, 114, 114, 0.041);
+  background-color: #191a1a;
+  background-image: linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 10rem 10rem;
+}
+
+.app.light {
+  --color: rgba(55, 52, 52, 0.041);
+  background-color: #ffffff;
+}
+
 .wrapper {
   display: flex;
   align-items: center;

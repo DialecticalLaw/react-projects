@@ -12,10 +12,12 @@ import { useAppDispatch } from './store/hooks';
 import { updateItems, updatePage } from './store/slices/page_slice';
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { ThemeSwitch } from './components/ThemeSwitch/ThemeSwitch';
+import { ThemeContext } from './store/ThemeContext';
 
 export function App() {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
   const { data, isFetching } = planetsApi.useGetItemsQuery({ searchTerm, page });
   const dispatch = useAppDispatch();
@@ -37,23 +39,27 @@ export function App() {
   const next = data?.next || null;
 
   return (
-    <ErrorBoundary>
-      <ThemeSwitch />
-      <Search
-        setPage={setPage}
-        isFetching={isFetching}
-        initialSearchTerm={searchTerm}
-        saveSearchTerm={saveSearchTerm}
-      />
-      <ErrorThrower />
+    <div className={`${styles.app} ${theme === 'light' ? styles.light : ''}`}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ErrorBoundary>
+          <ThemeSwitch />
+          <Search
+            setPage={setPage}
+            isFetching={isFetching}
+            initialSearchTerm={searchTerm}
+            saveSearchTerm={saveSearchTerm}
+          />
+          <ErrorThrower />
 
-      <p className={styles.text}>Page: {page}</p>
-      <div className={styles.wrapper}>
-        {isFetching ? <Loader /> : <Results items={data?.results} />}
-        {details && <Outlet />}
-      </div>
+          <p className={styles.text}>Page: {page}</p>
+          <div className={styles.wrapper}>
+            {isFetching ? <Loader /> : <Results items={data?.results} />}
+            {details && <Outlet />}
+          </div>
 
-      {data && !isFetching && <Pagination prev={prev} next={next} setPage={setPage} />}
-    </ErrorBoundary>
+          {data && !isFetching && <Pagination prev={prev} next={next} setPage={setPage} />}
+        </ErrorBoundary>
+      </ThemeContext.Provider>
+    </div>
   );
 }

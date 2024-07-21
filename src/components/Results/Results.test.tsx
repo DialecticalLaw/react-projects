@@ -26,7 +26,7 @@ describe('Results', () => {
 
     const { getAllByText } = render(
       <MemoryRouter>
-        <Results items={items}></Results>
+        <Results items={items} />
       </MemoryRouter>
     );
 
@@ -36,7 +36,7 @@ describe('Results', () => {
   it('appropriate message is displayed if no cards are present', () => {
     const { getByText } = render(
       <MemoryRouter>
-        <Results items={[]}></Results>
+        <Results items={[]} />
       </MemoryRouter>
     );
 
@@ -54,7 +54,7 @@ describe('Results', () => {
 
     const { getByText } = render(
       <MemoryRouter>
-        <Results items={items}></Results>
+        <Results items={items} />
       </MemoryRouter>
     );
 
