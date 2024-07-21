@@ -10,17 +10,20 @@ describe('Results', () => {
       {
         name: 'Dagobah',
         population: 'unknown',
-        terrain: 'swamp, jungles'
+        terrain: 'swamp, jungles',
+        url: 'https://swapi.dev/api/planets/1/'
       },
       {
         name: 'Tatooine',
         population: '200000',
-        terrain: 'desert'
+        terrain: 'desert',
+        url: 'https://swapi.dev/api/planets/2/'
       },
       {
         name: 'Endor',
         population: '30000000',
-        terrain: 'forests, mountains, lakes'
+        terrain: 'forests, mountains, lakes',
+        url: 'https://swapi.dev/api/planets/3/'
       }
     ] as Planet[];
 
@@ -48,7 +51,8 @@ describe('Results', () => {
       {
         name: 'Dagobah',
         population: 'unknown',
-        terrain: 'swamp, jungles'
+        terrain: 'swamp, jungles',
+        url: 'https://swapi.dev/api/planets/1/'
       }
     ] as Planet[];
 

@@ -1,6 +1,7 @@
 import styles from './Results.module.css';
 import { Planet } from '../../services/planets';
 import { Item } from './Item/Item';
+import { extractId } from '../../helpers/extractId';
 
 export function Results({ items }: { items?: Planet[] }) {
   if (!items || !items.length) return <p className={styles.text}>Nothing was found</p>;
@@ -8,7 +9,7 @@ export function Results({ items }: { items?: Planet[] }) {
   return (
     <section className={styles.results_section}>
       {items.map((item) => (
-        <Item key={item.url} item={item} />
+        <Item item={item} key={extractId(item.url)} />
       ))}
     </section>
   );
