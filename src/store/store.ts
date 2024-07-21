@@ -1,12 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
 import { planetsApi } from '../services/planets';
 import { pageSlice } from './slices/page_slice';
 
+const rootReducer = combineSlices(planetsApi, pageSlice);
+
 export const store = configureStore({
-  reducer: {
-    [planetsApi.reducerPath]: planetsApi.reducer,
-    [pageSlice.reducerPath]: pageSlice.reducer
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(planetsApi.middleware)
 });
 
