@@ -17,7 +17,7 @@ export function SelectCheckbox({ item }: { item: Planet }) {
     } else setSelected(false);
   }, [item.url, selectedItems]);
 
-  const toggleSelection = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const toggleSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
     const eventTarget = e.target;
     if (!(eventTarget instanceof HTMLInputElement)) return;
     if (eventTarget.checked) {
@@ -32,8 +32,8 @@ export function SelectCheckbox({ item }: { item: Planet }) {
           checked={isSelected}
           className={styles.checkbox}
           type="checkbox"
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={(e) => e.stopPropagation()}
+          onChange={(e) => {
             toggleSelection(e);
           }}
         />
