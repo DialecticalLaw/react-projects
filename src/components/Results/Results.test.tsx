@@ -3,6 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { Results } from './Results';
 import { MemoryRouter } from 'react-router-dom';
 import { Planet } from '../../services/planets';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 describe('Results', () => {
   it('renders the specified number of cards', () => {
@@ -28,9 +30,11 @@ describe('Results', () => {
     ] as Planet[];
 
     const { getAllByText } = render(
-      <MemoryRouter>
-        <Results items={items} />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Results items={items} />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(getAllByText('Population:').length).toBe(3);
@@ -38,9 +42,11 @@ describe('Results', () => {
 
   it('appropriate message is displayed if no cards are present', () => {
     const { getByText } = render(
-      <MemoryRouter>
-        <Results items={[]} />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Results items={[]} />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(getByText('Nothing was found')).toBeInTheDocument();
@@ -57,9 +63,11 @@ describe('Results', () => {
     ] as Planet[];
 
     const { getByText } = render(
-      <MemoryRouter>
-        <Results items={items} />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Results items={items} />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(getByText('Dagobah')).toBeInTheDocument();
