@@ -1,8 +1,9 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
 import { planetsApi } from '../services/planets';
 import { pageSlice } from './slices/page_slice';
+import { selectedItemsSlice } from './slices/selected_items_slice';
 
-const rootReducer = combineSlices(planetsApi, pageSlice);
+const rootReducer = combineSlices(planetsApi, pageSlice, selectedItemsSlice);
 
 export const store = configureStore({
   reducer: rootReducer,

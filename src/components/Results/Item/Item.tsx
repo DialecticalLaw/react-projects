@@ -20,7 +20,7 @@ export function Item({ item }: { item: Planet }) {
         })
       }
     >
-      <SelectCheckbox />
+      <SelectCheckbox item={item} />
       <h1 className={styles.item_title}>{item.name}</h1>
 
       <p className={styles.item_prop}>

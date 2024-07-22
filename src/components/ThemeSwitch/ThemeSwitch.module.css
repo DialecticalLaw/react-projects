@@ -60,12 +60,12 @@
 
 .dark > .theme_icon[alt='moon'] {
   opacity: 1;
-  animation: appear-left 0.4s forwards;
+  animation: appear-left 0.3s forwards;
 }
 
 .light > .theme_icon[alt='sun'] {
   opacity: 1;
-  animation: appear-right 0.4s forwards;
+  animation: appear-right 0.3s forwards;
 }
 
 @keyframes appear-left {
