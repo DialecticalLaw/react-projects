@@ -13,6 +13,7 @@ import { updateItems, updatePage } from './store/slices/page_slice';
 import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 import { ThemeSwitch } from './components/ThemeSwitch/ThemeSwitch';
 import { ThemeContext } from './store/ThemeContext';
+import { SelectedItemsFlyout } from './components/SelectedItemsFlyout/SelectedItemsFlyout';
 
 export function App() {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
@@ -52,12 +53,13 @@ export function App() {
           <ErrorThrower />
 
           <p className={styles.text}>Page: {page}</p>
+          {data && !isFetching && <Pagination prev={prev} next={next} setPage={setPage} />}
+
           <div className={styles.wrapper}>
             {isFetching ? <Loader /> : <Results items={data?.results} />}
             {details && <Outlet />}
           </div>
-
-          {data && !isFetching && <Pagination prev={prev} next={next} setPage={setPage} />}
+          <SelectedItemsFlyout />
         </ErrorBoundary>
       </ThemeContext.Provider>
     </div>

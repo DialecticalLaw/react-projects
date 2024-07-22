@@ -12,9 +12,9 @@ export function SelectCheckbox({ item }: { item: Planet }) {
   const isDefaultChecked = Boolean(selectedItems.find((selectedItem) => selectedItem.url === item.url));
 
   const toggleSelection = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    const eventTaget = e.target;
-    if (!(eventTaget instanceof HTMLInputElement)) return;
-    if (eventTaget.checked) {
+    const eventTarget = e.target;
+    if (!(eventTarget instanceof HTMLInputElement)) return;
+    if (eventTarget.checked) {
       dispatch(addItem(item));
     } else dispatch(removeItem(item.url));
   };
