@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Planet } from '../../../../services/planets';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { addItem, removeItem } from '../../../../store/slices/selected_items_slice';
@@ -9,7 +9,13 @@ export function SelectCheckbox({ item }: { item: Planet }) {
   const selectedItems = useAppSelector((state) => state.selectedItems.items);
   const dispatch = useAppDispatch();
   const { theme } = useContext(ThemeContext);
-  const isDefaultChecked = Boolean(selectedItems.find((selectedItem) => selectedItem.url === item.url));
+  const [isSelected, setSelected] = useState(false);
+
+  useEffect(() => {
+    if (selectedItems.find((selectedItem) => selectedItem.url === item.url)) {
+      setSelected(true);
+    } else setSelected(false);
+  }, [item.url, selectedItems]);
 
   const toggleSelection = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     const eventTarget = e.target;
@@ -23,7 +29,7 @@ export function SelectCheckbox({ item }: { item: Planet }) {
     <div className={styles.absolute_wrapper}>
       <div className={`${styles.relative_wrapper} ${theme === 'light' ? styles.light : ''}`}>
         <input
-          defaultChecked={isDefaultChecked}
+          checked={isSelected}
           className={styles.checkbox}
           type="checkbox"
           onClick={(e) => {
