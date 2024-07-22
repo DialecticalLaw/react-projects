@@ -10,7 +10,7 @@ export default defineConfig({
     setupFiles: 'src/setupTests',
     mockReset: true,
     coverage: {
-      exclude: ['**/node_modules/**', './public']
+      exclude: ['**/node_modules/**', './public', './.eslintrc.cjs', './vite.config.ts']
     }
   }
 });
