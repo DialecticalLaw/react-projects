@@ -11,7 +11,7 @@ export function Details() {
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const { theme } = useContext(ThemeContext);
   const detailsId = searchParams.get('details');
-  const { data, isLoading } = planetsApi.useGetItemByIdQuery(detailsId);
+  const { data, isFetching } = planetsApi.useGetItemByIdQuery(detailsId);
 
   const handleClose = useCallback(() => {
     setSearchParams((prev) => {
@@ -24,7 +24,7 @@ export function Details() {
     <>
       <div className={styles.close_handler} onClick={handleClose} />
       <section className={`${styles.wrapper} ${theme === 'light' ? styles.light : ''}`}>
-        {isLoading ? (
+        {isFetching ? (
           <Loader />
         ) : (
           data && (
