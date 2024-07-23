@@ -26,3 +26,13 @@
 .accent {
   color: var(--accent-color);
 }
+
+.btn {
+  padding: 0;
+}
+
+.download_link {
+  padding: 0.6rem 2rem;
+  color: #ffffff;
+  text-decoration: none;
+}
