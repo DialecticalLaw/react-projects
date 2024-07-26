@@ -6,11 +6,13 @@ import { Button } from '../Button/Button';
 export function Search({
   saveSearchTerm,
   initialSearchTerm,
-  isLoading
+  isFetching,
+  setPage
 }: {
   saveSearchTerm: (searchTerm: string) => void;
   initialSearchTerm: string;
-  isLoading: boolean;
+  isFetching: boolean;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [isValid, setValid] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,15 +24,16 @@ export function Search({
     if (inputValue[inputValue.length - 1] !== ' ' || inputValue === '') {
       setValid(true);
       saveSearchTerm(inputValue);
+      setPage(1);
     } else setValid(false);
   };
 
   return (
-    <section className={`${styles.search_section} ${isLoading ? styles.disabled : ''}`}>
+    <section className={`${styles.search_section} ${isFetching ? styles.disabled : ''}`}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!isLoading) changeSearchTerm();
+          if (!isFetching) changeSearchTerm();
         }}
         className={styles.search_form}
       >

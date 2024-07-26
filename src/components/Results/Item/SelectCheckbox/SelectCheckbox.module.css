@@ -1,0 +1,48 @@
+.absolute_wrapper {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.relative_wrapper {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  outline: 0.2rem solid #ffffff;
+  padding: 0.2rem;
+  border-radius: 0.6rem;
+}
+
+.relative_wrapper.light {
+  outline-color: #000000;
+}
+
+.checkbox {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  cursor: pointer;
+}
+
+.filling {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.7rem;
+  transform: scale(0);
+  background-color: #ffffff;
+  transition: 0.2s;
+}
+
+.light .filling {
+  background-color: #000000;
+}
+
+.checkbox:checked ~ .filling {
+  opacity: 1;
+  transform: none;
+}

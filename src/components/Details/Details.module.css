@@ -33,6 +33,18 @@
   animation: wrapper-appear 0.5s forwards;
 }
 
+.wrapper.light {
+  background: radial-gradient(
+    circle at -8.9% 51.2%,
+    var(--accent-color-dark) 0%,
+    var(--accent-color-dark) 15.9%,
+    var(--accent-color-transparent) 15.9%,
+    var(--accent-color-transparent) 24.4%,
+    rgb(225, 225, 225) 24.5%,
+    rgb(235, 235, 235) 66%
+  );
+}
+
 .close_handler {
   position: fixed;
   top: 0;
@@ -45,6 +57,10 @@
   color: var(--accent-color);
   font-weight: bold;
   letter-spacing: 0.5rem;
+}
+
+.light > .text {
+  color: #000000;
 }
 
 @keyframes wrapper-appear {

@@ -1,8 +1,10 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Results } from './Results';
-import { Planet } from '../../services/API_service';
 import { MemoryRouter } from 'react-router-dom';
+import { Planet } from '../../services/planets';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 describe('Results', () => {
   it('renders the specified number of cards', () => {
@@ -10,24 +12,29 @@ describe('Results', () => {
       {
         name: 'Dagobah',
         population: 'unknown',
-        terrain: 'swamp, jungles'
+        terrain: 'swamp, jungles',
+        url: 'https://swapi.dev/api/planets/1/'
       },
       {
         name: 'Tatooine',
         population: '200000',
-        terrain: 'desert'
+        terrain: 'desert',
+        url: 'https://swapi.dev/api/planets/2/'
       },
       {
         name: 'Endor',
         population: '30000000',
-        terrain: 'forests, mountains, lakes'
+        terrain: 'forests, mountains, lakes',
+        url: 'https://swapi.dev/api/planets/3/'
       }
     ] as Planet[];
 
     const { getAllByText } = render(
-      <MemoryRouter>
-        <Results items={items}></Results>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Results items={items} />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(getAllByText('Population:').length).toBe(3);
@@ -35,9 +42,11 @@ describe('Results', () => {
 
   it('appropriate message is displayed if no cards are present', () => {
     const { getByText } = render(
-      <MemoryRouter>
-        <Results items={[]}></Results>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Results items={[]} />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(getByText('Nothing was found')).toBeInTheDocument();
@@ -48,14 +57,17 @@ describe('Results', () => {
       {
         name: 'Dagobah',
         population: 'unknown',
-        terrain: 'swamp, jungles'
+        terrain: 'swamp, jungles',
+        url: 'https://swapi.dev/api/planets/1/'
       }
     ] as Planet[];
 
     const { getByText } = render(
-      <MemoryRouter>
-        <Results items={items}></Results>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Results items={items} />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(getByText('Dagobah')).toBeInTheDocument();

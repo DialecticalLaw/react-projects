@@ -9,6 +9,7 @@ lerna-debug.log*
 
 coverage
 node_modules
+.vitest-preview
 dist
 dist-ssr
 *.local

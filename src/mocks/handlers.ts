@@ -1,5 +1,5 @@
 import { DefaultBodyType, delay, http, HttpResponse, PathParams } from 'msw';
-import { ApiResponse, Planet } from '../services/API_service';
+import { ApiResponse, Planet } from '../services/planets';
 
 export const handlers = [
   http.get<PathParams, DefaultBodyType, Planet>('https://swapi.dev/api/planets/1', async () => {
@@ -15,6 +15,21 @@ export const handlers = [
       diameter: '10465',
       climate: 'arid',
       url: 'https://swapi.dev/api/planets/1/'
+    });
+  }),
+  http.get<PathParams, DefaultBodyType, Planet>('https://swapi.dev/api/planets/2', async () => {
+    await delay(500);
+    return HttpResponse.json({
+      name: 'Alderaan',
+      population: '2000000000',
+      terrain: 'grasslands, mountains',
+      orbital_period: '364',
+      rotation_period: '24',
+      surface_water: '40',
+      gravity: '1 standard',
+      diameter: '12500',
+      climate: 'temperate',
+      url: 'https://swapi.dev/api/planets/2/'
     });
   }),
   http.get<PathParams, DefaultBodyType, ApiResponse>('https://swapi.dev/api/planets/', () => {

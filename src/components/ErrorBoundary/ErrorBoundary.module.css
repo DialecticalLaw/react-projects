@@ -1,5 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: auto;
+}
+
 .text {
+  padding: 1rem;
   font-family: Kreadon;
   font-size: 2rem;
-  color: #ffffff;
+  background-color: rgb(47 91 255);
+  mix-blend-mode: difference;
 }

@@ -1,0 +1,87 @@
+.absolute_wrapper {
+  z-index: 1;
+  user-select: none;
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  width: 8rem;
+  height: 4rem;
+  padding: 0.5rem;
+  background-color: rgb(70, 70, 70);
+  border-radius: 2rem;
+  box-shadow: inset 0 0 1rem 0 #171717;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.absolute_wrapper:hover {
+  box-shadow:
+    inset 0 0 1rem 0 #171717,
+    0 0 1rem 0 var(--accent-color);
+}
+
+.absolute_wrapper:has(.light) {
+  background-color: rgb(230, 230, 230);
+  box-shadow: inset 0 0 1.5rem 0 #8c8c8c;
+}
+
+.absolute_wrapper:has(.light):hover {
+  box-shadow:
+    inset 0 0 1rem 0 #8c8c8c,
+    0 0 1.5rem 0 var(--accent-color);
+}
+
+.relative_wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.switch {
+  position: absolute;
+  left: 0;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch.light {
+  background-color: rgb(50, 50, 50);
+  left: calc(100% - 3rem);
+}
+
+.theme_icon {
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+}
+
+.dark > .theme_icon[alt='moon'] {
+  opacity: 1;
+  animation: appear-left 0.3s forwards;
+}
+
+.light > .theme_icon[alt='sun'] {
+  opacity: 1;
+  animation: appear-right 0.3s forwards;
+}
+
+@keyframes appear-left {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes appear-right {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}

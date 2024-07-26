@@ -4,11 +4,11 @@ import { Button } from '../Button/Button';
 
 export function ErrorPage() {
   return (
-    <>
+    <div className={styles.wrapper}>
       <p className={styles.text}>The page was not found!</p>
       <Link className={styles.link} to={'/'}>
         <Button type="button">Go Home</Button>
       </Link>
-    </>
+    </div>
   );
 }
