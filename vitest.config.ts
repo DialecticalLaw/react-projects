@@ -1,8 +1,6 @@
 import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [react()],
   test: {
     css: true,
     globals: true,
@@ -10,7 +8,7 @@ export default defineConfig({
     setupFiles: 'src/setupTests',
     mockReset: true,
     coverage: {
-      exclude: ['**/node_modules/**', './public', './.eslintrc.cjs', './vite.config.ts']
+      exclude: ['**/node_modules/**', './public', './.eslintrc.cjs', './vitest.config.ts']
     }
   }
 });
