@@ -1,13 +1,4 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
   "compilerOptions": {
     "lib": [
       "dom",
@@ -19,6 +10,7 @@
     "strict": false,
     "noEmit": true,
     "incremental": true,
+    "target": "ES2015",
     "module": "esnext",
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -37,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "next.config.mjs"  ],
   "exclude": [
     "node_modules"
   ]

@@ -50,8 +50,13 @@ mod._resolveFilename = function (request, parent, isMain, options) {
 require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
-  extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended', 'plugin:@next/next/recommended'],
-  plugins: ['import', 'react', 'jsx-a11y'],
+  extends: [
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@next/next/recommended',
+    'plugin:@typescript-eslint/recommended'
+  ],
+  plugins: ['import', 'react', 'jsx-a11y', 'react-compiler'],
   rules: {
     'import/no-anonymous-default-export': 'warn',
     'react/no-unknown-property': 'off',
@@ -69,7 +74,9 @@ module.exports = {
     'jsx-a11y/aria-unsupported-elements': 'warn',
     'jsx-a11y/role-has-required-aria-props': 'warn',
     'jsx-a11y/role-supports-aria-props': 'warn',
-    'react/jsx-no-target-blank': 'off'
+    'react/jsx-no-target-blank': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    'react-compiler/react-compiler': 'error'
   },
   parser: './parser.ts',
   parserOptions: {
