@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { Planet } from '../../../../services/planets';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { addItem, removeItem } from '../../../../store/slices/selected_items_slice';
 import styles from './SelectCheckbox.module.css';
 import { ThemeContext } from '../../../../store/ThemeContext';
+import { Planet } from '../../../../interfaces';
 
 export function SelectCheckbox({ item }: { item: Planet }) {
   const selectedItems = useAppSelector((state) => state.selectedItems.items);

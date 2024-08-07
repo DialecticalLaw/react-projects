@@ -1,24 +1,22 @@
 import styles from './Details.module.css';
-import { useCallback, useContext, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { Loader } from '../Loader/Loader';
 import { Button } from '../Button/Button';
-import { planetsApi } from '../../services/planets';
 import { ThemeContext } from '../../store/ThemeContext';
-import { useSearchParams } from 'next/navigation';
 
 export function Details() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const { theme } = useContext(ThemeContext);
-  const detailsId = searchParams.get('details');
-  const { data, isFetching } = planetsApi.useGetItemByIdQuery(detailsId);
+  // const detailsId = searchParams.get('details');
+  // const { data, isFetching } = planetsApi.useGetItemByIdQuery(detailsId);
 
-  const handleClose = useCallback(() => {
-    setSearchParams((prev) => {
-      prev.delete('details');
-      return prev;
-    });
-  }, [setSearchParams]);
+  // const handleClose = useCallback(() => {
+  //   setSearchParams((prev) => {
+  //     prev.delete('details');
+  //     return prev;
+  //   });
+  // }, [setSearchParams]);
 
   return (
     <>

@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react';
 import { convertToCsv } from '../../helpers/convertToCsv';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { clearSelectedItems } from '../../store/slices/selected_items_slice';
 import { Button } from '../Button/Button';
 import styles from './SelectedItemsFlyout.module.css';
 
 export function SelectedItemsFlyout() {
   const selectedItems = useAppSelector((state) => state.selectedItems.items);
   const [href, setHref] = useState('');
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!selectedItems.length) return;

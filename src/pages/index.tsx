@@ -1,6 +1,4 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { App } from '../components/App/App';
-import { ThemeProvider } from '../components/ThemeProvider/ThemeProvider';
+import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { ApiResponse } from '../interfaces';
 
@@ -11,15 +9,10 @@ export const getServerSideProps: GetServerSideProps<{ apiRes: ApiResponse }> = a
   return { props: { apiRes } };
 };
 
-export default function Page({ apiRes }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page() {
   return (
-    <>
-      <Head>
-        <title>Star Wars - Planets search</title>
-      </Head>
-      <ThemeProvider>
-        <App apiRes={apiRes} />
-      </ThemeProvider>
-    </>
+    <Head>
+      <title>Star Wars - Planets search</title>
+    </Head>
   );
 }

@@ -6,12 +6,10 @@ import { Button } from '../Button/Button';
 export function Search({
   saveSearchTerm,
   initialSearchTerm,
-  isFetching,
   setPage
 }: {
   saveSearchTerm: (searchTerm: string) => void;
   initialSearchTerm: string;
-  isFetching: boolean;
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [isValid, setValid] = useState(true);
@@ -29,11 +27,11 @@ export function Search({
   };
 
   return (
-    <section className={`${styles.search_section} ${isFetching ? styles.disabled : ''}`}>
+    <section className={styles.search_section}>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!isFetching) changeSearchTerm();
+          changeSearchTerm();
         }}
         className={styles.search_form}
       >
