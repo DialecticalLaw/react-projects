@@ -1,26 +1,28 @@
 import { useContext } from 'react';
-// import { extractId } from '../../../helpers/extractId';
+import { extractId } from '../../../helpers/extractId';
 import { ThemeContext } from '../../../store/ThemeContext';
 import styles from './Item.module.css';
-import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
+// import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
 import { Planet } from '../../../interfaces';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 export function Item({ item }: { item: Planet }) {
-  // const { query, replace } = useRouter();
+  const { query, replace } = useRouter();
   const { theme } = useContext(ThemeContext);
 
   return (
     <div
       className={`${styles.item} ${theme === 'light' ? styles.light : ''}`}
-      // onClick={() =>
-      //   // setSearchParams((prev) => {
-      //   //   prev.set('details', extractId(item.url));
-      //   //   return prev;
-      //   // })
-      // }
+      onClick={() =>
+        replace({
+          query: {
+            ...query,
+            details: extractId(item.url)
+          }
+        })
+      }
     >
-      <SelectCheckbox item={item} />
+      {/* <SelectCheckbox item={item} /> */}
       <h1 className={styles.item_title}>{item.name}</h1>
 
       <p className={styles.item_prop}>

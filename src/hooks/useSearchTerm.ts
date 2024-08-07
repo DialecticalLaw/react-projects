@@ -5,7 +5,7 @@ export function useSearchTerm(): [string, (searchTerm: string) => void] {
 
   useEffect(() => {
     setValue(localStorage.getItem('dialecticallaw-search-term') || '');
-    console.log('a');
+    console.log('search term');
   }, []);
 
   const saveSearchTerm = (searchTerm: string) => {
