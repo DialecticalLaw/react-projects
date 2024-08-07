@@ -1,8 +1,8 @@
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { App } from '../components/App/App';
 import { ThemeProvider } from '../components/ThemeProvider/ThemeProvider';
-import { ApiResponse } from '../services/planets';
 import Head from 'next/head';
+import { ApiResponse } from '../interfaces';
 
 export const getServerSideProps: GetServerSideProps<{ apiRes: ApiResponse }> = async (context) => {
   console.log(context);
