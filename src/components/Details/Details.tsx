@@ -12,10 +12,8 @@ export function Details({ data, isLoading }: { data: Planet; isLoading: boolean 
   const { query, replace } = useRouter();
 
   const handleClose = () => {
-    replace({ query: { page: query.page } });
+    replace({ query: { page: query.page, search: query.search } });
   };
-
-  console.log(data);
 
   return (
     <>

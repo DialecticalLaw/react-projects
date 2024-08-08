@@ -16,11 +16,12 @@ import { Details } from '../components/Details/Details';
 export const getServerSideProps: GetServerSideProps<{ apiRes: ApiResponse; detailsRes?: Planet }> = async (
   context
 ) => {
-  const page = context.query.page;
+  const page = context.query.page || 1;
   const details = context.query.details;
+  const search = context.query.search || '';
 
   const result: { apiRes: ApiResponse; detailsRes?: Planet } = {
-    apiRes: await (await fetch(`https://swapi.dev/api/planets/${page ? `?page=${page}` : ''}`)).json()
+    apiRes: await (await fetch(`https://swapi.dev/api/planets/?page=${page}&search=${search}`)).json()
   };
 
   if (details) {
@@ -51,12 +52,12 @@ export default function Page({ apiRes, detailsRes }: InferGetServerSidePropsType
   }, []);
 
   useEffect(() => {
-    if (page !== Number(query.page)) {
+    if (page !== Number(query.page) || searchTerm !== query.search) {
       replace({
-        query: { page: page }
+        query: { ...query, page, search: searchTerm }
       });
     }
-  }, [page, query.page, replace]);
+  }, [page, query, query.page, replace, searchTerm]);
 
   const prev = apiRes?.previous || null;
   const next = apiRes?.next || null;
