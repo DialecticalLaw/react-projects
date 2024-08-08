@@ -12,6 +12,7 @@ import { Loader } from '../components/Loader/Loader';
 import styles from './App.module.css';
 import { ThemeContext } from '../store/ThemeContext';
 import { Details } from '../components/Details/Details';
+import { SelectedItemsFlyout } from '../components/SelectedItemsFlyout/SelectedItemsFlyout';
 
 export const getServerSideProps: GetServerSideProps<{ apiRes: ApiResponse; detailsRes?: Planet }> = async (
   context
@@ -78,7 +79,7 @@ export default function Page({ apiRes, detailsRes }: InferGetServerSidePropsType
           {loading ? <Loader /> : <Results items={apiRes?.results} />}
           {query.details && detailsRes && <Details data={detailsRes} isLoading={loading} />}
         </div>
-        {/* <SelectedItemsFlyout /> */}
+        <SelectedItemsFlyout />
       </div>
     </>
   );

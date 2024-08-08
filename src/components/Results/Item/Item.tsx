@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { extractId } from '../../../helpers/extractId';
 import { ThemeContext } from '../../../store/ThemeContext';
 import styles from './Item.module.css';
-// import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
+import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
 import { Planet } from '../../../interfaces';
 import { useRouter } from 'next/router';
 
@@ -22,7 +22,7 @@ export function Item({ item }: { item: Planet }) {
         })
       }
     >
-      {/* <SelectCheckbox item={item} /> */}
+      <SelectCheckbox item={item} />
       <h1 className={styles.item_title}>{item.name}</h1>
 
       <p className={styles.item_prop}>
