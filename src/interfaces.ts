@@ -17,3 +17,5 @@ export interface ApiResponse {
   previous: string | null;
   results: Planet[];
 }
+
+export type ApiData = { apiRes: ApiResponse; detailsRes?: Planet };
