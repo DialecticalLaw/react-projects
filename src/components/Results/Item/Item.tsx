@@ -4,23 +4,21 @@ import { ThemeContext } from '../../../store/ThemeContext';
 import styles from './Item.module.css';
 import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
 import { Planet } from '../../../interfaces';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export function Item({ item }: { item: Planet }) {
-  const { query, replace } = useRouter();
+  const { replace } = useRouter();
+  const searchParams = useSearchParams();
   const { theme } = useContext(ThemeContext);
 
   return (
     <div
       className={`${styles.item} ${theme === 'light' ? styles.light : ''}`}
-      onClick={() =>
-        replace({
-          query: {
-            ...query,
-            details: extractId(item.url)
-          }
-        })
-      }
+      onClick={() => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('details', extractId(item.url));
+        replace(`/?${params.toString()}`);
+      }}
     >
       <SelectCheckbox item={item} />
       <h1 className={styles.item_title}>{item.name}</h1>

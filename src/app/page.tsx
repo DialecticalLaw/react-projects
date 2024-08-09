@@ -10,7 +10,6 @@ async function getData(searchParams?: { [key: string]: string }) {
   const result: { apiRes: ApiResponse; detailsRes?: Planet } = {
     apiRes: await (await fetch(`https://swapi.dev/api/planets/?page=${page}&search=${search}`)).json()
   };
-
   if (details) {
     result.detailsRes = await (await fetch(`https://swapi.dev/api/planets/${details}`)).json();
   }
