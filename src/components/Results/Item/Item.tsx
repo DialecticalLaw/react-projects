@@ -5,11 +5,13 @@ import styles from './Item.module.css';
 import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
 import { Planet } from '../../../interfaces';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { LoadingContext } from '../../../store/LoadingContext';
 
 export function Item({ item }: { item: Planet }) {
   const { replace } = useRouter();
   const searchParams = useSearchParams();
   const { theme } = useContext(ThemeContext);
+  const { setLoading } = useContext(LoadingContext);
 
   return (
     <div
@@ -17,6 +19,7 @@ export function Item({ item }: { item: Planet }) {
       onClick={() => {
         const params = new URLSearchParams(searchParams.toString());
         params.set('details', extractId(item.url));
+        if (setLoading) setLoading(true);
         replace(`/?${params.toString()}`);
       }}
     >

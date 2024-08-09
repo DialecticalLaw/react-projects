@@ -12,6 +12,8 @@ import { Results } from '../Results/Results';
 import { Details } from '../Details/Details';
 import { SelectedItemsFlyout } from '../SelectedItemsFlyout/SelectedItemsFlyout';
 import { ApiResponse, Planet } from '../../interfaces';
+import { Loader } from '../Loader/Loader';
+import { LoadingContext } from '../../store/LoadingContext';
 
 export default function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?: Planet }) {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
@@ -19,6 +21,11 @@ export default function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; deta
   const searchParams = useSearchParams();
   const { theme } = useContext(ThemeContext);
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+  const { isLoading, setLoading } = useContext(LoadingContext);
+
+  useEffect(() => {
+    if (setLoading) setLoading(false);
+  }, [setLoading, apiRes, detailsRes]);
 
   useEffect(() => {
     if (page.toString() !== searchParams.get('page') || searchTerm !== searchParams.get('search')) {
@@ -40,12 +47,15 @@ export default function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; deta
       <Search setPage={setPage} initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
 
       <p className={styles.text}>Page: {page}</p>
-      {Boolean(apiRes?.results?.length) && <Pagination prev={prev} next={next} setPage={setPage} />}
+      {!isLoading && Boolean(apiRes?.results?.length) && (
+        <Pagination prev={prev} next={next} setPage={setPage} />
+      )}
 
       <div className={styles.wrapper}>
-        <Results items={apiRes?.results} />
+        {isLoading ? <Loader /> : <Results items={apiRes?.results} />}
         {details && detailsRes && <Details data={detailsRes} />}
       </div>
+
       <SelectedItemsFlyout />
     </div>
   );

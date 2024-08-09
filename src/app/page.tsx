@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import Home from '../components/Home/Home';
 import { ApiResponse, Planet } from '../interfaces';
 
@@ -20,5 +21,9 @@ async function getData(searchParams?: { [key: string]: string }) {
 export default async function Page({ searchParams }: { searchParams?: { [key: string]: string } }) {
   const data = await getData(searchParams);
 
-  return <Home apiRes={data.apiRes} detailsRes={data.detailsRes} />;
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <Home apiRes={data.apiRes} detailsRes={data.detailsRes} />
+    </Suspense>
+  );
 }
