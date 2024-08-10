@@ -16,8 +16,8 @@ export function ThemeSwitch() {
     >
       <div className={styles.relative_wrapper}>
         <div className={`${styles.switch} ${theme === 'light' ? styles.light : styles.dark}`}>
-          <Image src={moon} className={styles.theme_icon} alt="moon" />
-          <Image src={sun} className={styles.theme_icon} alt="sun" />
+          <Image width={30} height={30} src={moon} className={styles.theme_icon} alt="moon" />
+          <Image width={30} height={30} src={sun} className={styles.theme_icon} alt="sun" />
         </div>
       </div>
     </div>
