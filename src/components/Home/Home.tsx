@@ -39,7 +39,6 @@ export default function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; deta
   const prev = apiRes?.previous || null;
   const next = apiRes?.next || null;
   const details = searchParams.get('details');
-  console.log(apiRes, detailsRes);
 
   return (
     <div className={`${styles.app} ${theme === 'light' ? styles.light : ''}`}>
