@@ -17,7 +17,8 @@ export default defineConfig({
         './vitest.config.ts',
         './next.config.mjs',
         '.next/*',
-        './parser.ts'
+        './parser.ts',
+        '**/src/mocks'
       ]
     }
   }

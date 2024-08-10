@@ -4,8 +4,17 @@ import { replaceComma } from './replaceComma';
 
 describe('helpers', () => {
   it('replaceComma is working correctly', () => {
-    const incorrectData = ['Tat,ooine', '23', '10,465', 'arid', '1, standard', '1', '2000,00'];
-    const correctData = ['Tatooine', '23', '10465', 'arid', '1 standard', '1', '200000'];
+    const incorrectData = [
+      'Tat,ooine',
+      '23',
+      '10,465',
+      'arid',
+      '1, standard',
+      '1',
+      '2000,00',
+      ['rar', 'tat']
+    ];
+    const correctData = ['Tatooine', '23', '10465', 'arid', '1 standard', '1', '200000', 'rar tat'];
     expect(replaceComma(incorrectData)).toEqual(correctData);
   });
 
