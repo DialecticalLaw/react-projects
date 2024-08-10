@@ -1,9 +1,10 @@
 import '@testing-library/jest-dom/vitest';
-import './global.css';
-import { beforeAll, afterEach, afterAll } from 'vitest';
+import './pages/styles.css';
+import { beforeAll, afterEach, afterAll, vi } from 'vitest';
 import { server } from './mocks/node';
 
 beforeAll(() => {
+  vi.mock('next/router', () => require('next-router-mock'));
   server.listen({ onUnhandledRequest: 'error' });
 });
 
