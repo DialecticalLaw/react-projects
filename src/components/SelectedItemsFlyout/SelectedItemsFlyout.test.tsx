@@ -5,7 +5,7 @@ import { SelectedItemsContext } from '../../store/SelectedItemsContext';
 import { Planet } from '../../interfaces';
 
 describe('SelectedItemsFlyout', () => {
-  it('displays correctly', async () => {
+  it('displays correctly', () => {
     const planetsArray = [{}, {}, {}] as Planet[];
     const clearSelectedItems = () => {
       planetsArray.length = 0;
