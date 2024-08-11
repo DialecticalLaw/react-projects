@@ -42,7 +42,7 @@ describe('ThemeSwitch', () => {
 
     expect(switchElem).toHaveStyle(`
         background-color: rgb(50, 50, 50);
-        left: calc(100% - 3rem);
+        left: calc(100% - 30px);
       `);
   });
 });

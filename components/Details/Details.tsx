@@ -1,4 +1,3 @@
-import { useSearchParams } from 'react-router-dom';
 import styles from './Details.module.css';
 import { useCallback, useContext, useRef } from 'react';
 import { Loader } from '../Loader/Loader';
@@ -6,6 +5,7 @@ import { Button } from '../Button/Button';
 import { ThemeContext } from '../../store/ThemeContext';
 import { Planet } from '../../interfaces';
 import { LoadingContext } from '../../store/LoadingContext';
+import { useSearchParams } from '@remix-run/react';
 
 export function Details({ data }: { data: Planet }) {
   const [, setSearchParams] = useSearchParams();

@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@remix-run/dev": "^2.11.1",
+    "@remix-run/testing": "^2.11.1",
     "@testing-library/dom": "^10.3.1",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
@@ -41,6 +42,7 @@
     "eslint-plugin-react-compiler": "^0.0.0-experimental-0998c1e-20240625",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "happy-dom": "^14.12.3",
     "husky": "^9.0.11",
     "jsdom": "^24.1.0",
     "msw": "^2.3.1",

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ApiResponse, Planet } from '../../interfaces';
 import styles from './Home.module.css';
 import { useSearchTerm } from '../../hooks/useSearchTerm';
-import { LoadingContext } from 'store/LoadingContext';
+import { LoadingContext } from '../../store/LoadingContext';
 import { ThemeContext } from '../../store/ThemeContext';
 import { ThemeSwitch } from '../../components/ThemeSwitch/ThemeSwitch';
 import { useSearchParams } from '@remix-run/react';
@@ -11,7 +11,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { Loader } from '../../components/Loader/Loader';
 import { Results } from '../../components/Results/Results';
 import { Details } from '../../components/Details/Details';
-import { SelectedItemsFlyout } from 'components/SelectedItemsFlyout/SelectedItemsFlyout';
+import { SelectedItemsFlyout } from '../../components/SelectedItemsFlyout/SelectedItemsFlyout';
 
 export function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?: Planet }) {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
