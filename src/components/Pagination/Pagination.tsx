@@ -12,7 +12,6 @@ export function Pagination({
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { setLoading } = useContext(LoadingContext);
-  if (!setLoading) throw new Error('setLoading is undefined');
 
   return (
     <form className={styles.wrapper}>
@@ -20,7 +19,7 @@ export function Pagination({
         type="button"
         onClick={() => {
           setPage((prev) => prev - 1);
-          setLoading(true);
+          if (setLoading) setLoading(true);
         }}
         className={`${styles.btn} ${prev ? styles.active : ''}`}
       >
@@ -30,7 +29,7 @@ export function Pagination({
         type="button"
         onClick={() => {
           setPage((prev) => prev + 1);
-          setLoading(true);
+          if (setLoading) setLoading(true);
         }}
         className={`${styles.btn} ${next ? styles.active : ''}`}
       >
