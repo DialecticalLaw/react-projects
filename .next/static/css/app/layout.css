@@ -1,0 +1,97 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/global.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+  font-family: Kreadon;
+  src: url(/_next/static/media/KreadonLightest.8acd22bb.ttf);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+}
+
+:root {
+  --accent-color: rgb(76, 168, 255);
+  --accent-color-dark: rgb(30, 75, 118);
+  --accent-color-transparent: rgba(33, 83, 130, 0.4);
+}
+
+::-webkit-scrollbar {
+  background-color: #636363;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-color-dark);
+}
+
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/ErrorBoundary/ErrorBoundary.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+.ErrorBoundary_wrapper__XjLhF {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: auto;
+}
+
+.ErrorBoundary_text__T9ywY {
+  padding: 1rem;
+  font-family: Kreadon;
+  font-size: 2rem;
+  background-color: rgb(47 91 255);
+  mix-blend-mode: difference;
+}
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./src/components/Button/Button.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+.Button_btn__b1BQa {
+  position: relative;
+  padding: 0.6rem 2rem;
+  border: none;
+  border-top: 0.2rem solid #787878;
+  outline: none;
+  color: #ffffff;
+  border-radius: 2rem;
+  background-color: rgba(56, 56, 56, 0.877);
+  font-size: 2.5rem;
+  font-family: Kreadon;
+  box-shadow: 0 0rem 1rem 0.1rem #090909;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.Button_btn__b1BQa.Button_light__ziWeh {
+  box-shadow: 0 0rem 1rem 0.1rem #7c7c7c;
+}
+
+.Button_btn__b1BQa:hover {
+  box-shadow:
+    0 0rem 1rem 0.1rem #090909,
+    0 0 3rem 0 var(--accent-color);
+  color: var(--accent-color);
+}
+
+.Button_btn__b1BQa.Button_light__ziWeh:hover {
+  box-shadow:
+    0 0rem 1rem 0.1rem #7c7c7c,
+    0 0 3rem 0 var(--accent-color);
+}
+
+.Button_btn__b1BQa:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
