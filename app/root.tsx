@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts } from '@remix-run/react';
+import { Links, Meta, Scripts } from '@remix-run/react';
 import globalCss from './global.css?url';
 import { LinksFunction } from '@remix-run/node';
 
@@ -8,7 +8,7 @@ export default function App() {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/svg+xml" href="./public/planet.ico" />
+        <link rel="icon" type="image/svg+xml" href="./planet.ico" />
         <title>Star Wars - Planets search</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
@@ -16,7 +16,7 @@ export default function App() {
       </head>
       <body>
         <h1>Hello world!</h1>
-        <Outlet />
+
         <Scripts />
       </body>
     </html>

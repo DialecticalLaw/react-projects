@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import './global.css';
+import './app/global.css';
 import { beforeAll, afterEach, afterAll } from 'vitest';
 import { server } from './mocks/node';
 

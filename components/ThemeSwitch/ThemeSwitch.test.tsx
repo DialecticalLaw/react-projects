@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { ThemeContext } from '../../store/ThemeContext';
 import { ThemeSwitch } from './ThemeSwitch';
 import { ReactNode, useState } from 'react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 function ContextProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
