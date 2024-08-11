@@ -1,10 +1,30 @@
-import { Links, Meta, Scripts } from '@remix-run/react';
+import { Links, Meta, Scripts, useLoaderData } from '@remix-run/react';
 import globalCss from './global.css?url';
-import { LinksFunction } from '@remix-run/node';
+import { json, LoaderFunctionArgs, LinksFunction } from '@remix-run/node';
+import { ApiResponse, Planet } from 'interfaces';
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: globalCss }];
 
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const searchParams = new URL(request.url).searchParams;
+  const page = searchParams.get('page') || '1';
+  const details = searchParams.get('details');
+  const search = searchParams.get('search') || '';
+
+  const result: { apiRes: ApiResponse; detailsRes?: Planet } = {
+    apiRes: await (await fetch(`https://swapi.dev/api/planets/?page=${page}&search=${search}`)).json()
+  };
+  if (details) {
+    result.detailsRes = await (await fetch(`https://swapi.dev/api/planets/${details}`)).json();
+  }
+
+  return json(result);
+};
+
 export default function App() {
+  const { apiRes } = useLoaderData<typeof loader>();
+  console.log(apiRes);
+
   return (
     <html lang="en">
       <head>

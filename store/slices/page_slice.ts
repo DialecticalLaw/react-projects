@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Planet } from '../../services/planets';
+import { Planet } from '../../interfaces';
 
 const initialState: { pageNumber: number; items: Planet[] } = {
   pageNumber: 0,

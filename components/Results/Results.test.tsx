@@ -2,9 +2,9 @@ import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Results } from './Results';
 import { MemoryRouter } from 'react-router-dom';
-import { Planet } from '../../services/planets';
 import { Provider } from 'react-redux';
 import { store } from '../../store/store';
+import { Planet } from '../../interfaces';
 
 describe('Results', () => {
   it('renders the specified number of cards', () => {

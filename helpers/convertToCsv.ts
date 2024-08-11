@@ -1,4 +1,4 @@
-import { Planet } from '../services/planets';
+import { Planet } from '../interfaces';
 import { replaceComma } from './replaceComma';
 
 export function convertToCsv(selectedItems: Planet[]) {
