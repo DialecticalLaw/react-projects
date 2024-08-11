@@ -11,6 +11,7 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { Loader } from '../../components/Loader/Loader';
 import { Results } from '../../components/Results/Results';
 import { Details } from '../../components/Details/Details';
+import { SelectedItemsFlyout } from 'components/SelectedItemsFlyout/SelectedItemsFlyout';
 
 export function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?: Planet }) {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
@@ -52,7 +53,7 @@ export function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?:
         {isLoading ? <Loader /> : <Results items={apiRes?.results} />}
         {details && detailsRes && <Details data={detailsRes} />}
       </div>
-      {/* <SelectedItemsFlyout /> */}
+      <SelectedItemsFlyout />
     </div>
   );
 }
