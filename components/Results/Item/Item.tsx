@@ -5,20 +5,23 @@ import styles from './Item.module.css';
 import { useSearchParams } from 'react-router-dom';
 import { SelectCheckbox } from './SelectCheckbox/SelectCheckbox';
 import { Planet } from '../../../interfaces';
+import { LoadingContext } from '../../../store/LoadingContext';
 
 export function Item({ item }: { item: Planet }) {
   const [, setSearchParams] = useSearchParams();
   const { theme } = useContext(ThemeContext);
+  const { setLoading } = useContext(LoadingContext);
 
   return (
     <div
       className={`${styles.item} ${theme === 'light' ? styles.light : ''}`}
-      onClick={() =>
+      onClick={() => {
         setSearchParams((prev) => {
           prev.set('details', extractId(item.url));
           return prev;
-        })
-      }
+        });
+        if (setLoading) setLoading(true);
+      }}
     >
       <SelectCheckbox item={item} />
       <h1 className={styles.item_title}>{item.name}</h1>

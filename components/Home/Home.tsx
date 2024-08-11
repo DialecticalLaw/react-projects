@@ -18,11 +18,11 @@ export function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?:
   const [searchParams, setSearchParams] = useSearchParams();
   const { theme } = useContext(ThemeContext);
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-  const { isLoading } = useContext(LoadingContext);
+  const { isLoading, setLoading } = useContext(LoadingContext);
 
-  // useEffect(() => {
-  //   if (setLoading) setLoading(false);
-  // }, [setLoading, apiRes, detailsRes]);
+  useEffect(() => {
+    if (setLoading) setLoading(false);
+  }, [setLoading, apiRes, detailsRes]);
 
   useEffect(() => {
     if (page.toString() !== searchParams.get('page') || searchTerm !== searchParams.get('search')) {

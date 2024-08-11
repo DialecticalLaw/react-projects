@@ -23,7 +23,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function App() {
   const { apiRes, detailsRes } = useLoaderData<typeof loader>();
-  console.log(apiRes, detailsRes);
 
   return (
     <html>

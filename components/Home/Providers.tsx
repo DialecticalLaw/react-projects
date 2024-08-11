@@ -8,7 +8,7 @@ import { ErrorBoundary } from '../../components/ErrorBoundary/ErrorBoundary';
 export function Providers({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [selectedItems, setSelectedItems] = useState<Planet[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
