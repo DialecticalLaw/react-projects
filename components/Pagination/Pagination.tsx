@@ -16,14 +16,14 @@ export function Pagination({
         onClick={() => setPage((prev) => prev - 1)}
         className={`${styles.btn} ${prev ? styles.active : ''}`}
       >
-        &larr;
+        {'<'}
       </button>
       <button
         type="button"
         onClick={() => setPage((prev) => prev + 1)}
         className={`${styles.btn} ${next ? styles.active : ''}`}
       >
-        &rarr;
+        {'>'}
       </button>
     </form>
   );

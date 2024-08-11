@@ -2,18 +2,19 @@ import { useContext, useEffect, useState } from 'react';
 import { ApiResponse, Planet } from '../../interfaces';
 import styles from './Home.module.css';
 import { useSearchTerm } from '../../hooks/useSearchTerm';
-// import { LoadingContext } from 'store/LoadingContext';
+import { LoadingContext } from 'store/LoadingContext';
 import { ThemeContext } from '../../store/ThemeContext';
 import { ThemeSwitch } from '../../components/ThemeSwitch/ThemeSwitch';
 import { useSearchParams } from '@remix-run/react';
 import { Search } from 'components/Search/Search';
+import { Pagination } from 'components/Pagination/Pagination';
 
 export function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?: Planet }) {
   const [searchTerm, saveSearchTerm] = useSearchTerm();
   const [searchParams, setSearchParams] = useSearchParams();
   const { theme } = useContext(ThemeContext);
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-  // const { isLoading, setLoading } = useContext(LoadingContext);
+  const { isLoading } = useContext(LoadingContext);
 
   // useEffect(() => {
   //   if (setLoading) setLoading(false);
@@ -31,8 +32,8 @@ export function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?:
 
   console.log(apiRes, detailsRes);
 
-  // const prev = apiRes?.previous || null;
-  // const next = apiRes?.next || null;
+  const prev = apiRes?.previous || null;
+  const next = apiRes?.next || null;
   // const details = searchParams.get('details');
 
   return (
@@ -41,9 +42,9 @@ export function Home({ apiRes, detailsRes }: { apiRes: ApiResponse; detailsRes?:
       <Search setPage={setPage} initialSearchTerm={searchTerm} saveSearchTerm={saveSearchTerm} />
 
       <p className={styles.text}>Page: {page}</p>
-      {/* {!isLoading && Boolean(apiRes?.results?.length) && (
-          <Pagination prev={prev} next={next} setPage={setPage} />
-        )} */}
+      {!isLoading && Boolean(apiRes?.results?.length) && (
+        <Pagination prev={prev} next={next} setPage={setPage} />
+      )}
       {/* <div className={styles.wrapper}>
           {isLoading ? <Loader /> : <Results items={apiRes?.results} />}
           {details && detailsRes && <Details data={detailsRes} />}
