@@ -4,11 +4,6 @@
   transition: 0.3s;
 }
 
-.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .search_form {
   display: flex;
   justify-content: flex-start;

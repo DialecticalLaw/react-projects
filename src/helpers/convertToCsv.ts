@@ -1,8 +1,8 @@
-import { Planet } from '../services/planets';
+import { Planet } from '../interfaces';
 import { replaceComma } from './replaceComma';
 
 export function convertToCsv(selectedItems: Planet[]) {
-  const csvRows = [];
+  const csvRows: string[] = [];
   const headers = Object.keys(selectedItems[0]).join(',');
   csvRows.push(headers);
 

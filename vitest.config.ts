@@ -10,7 +10,16 @@ export default defineConfig({
     setupFiles: 'src/setupTests',
     mockReset: true,
     coverage: {
-      exclude: ['**/node_modules/**', './public', './.eslintrc.cjs', './vite.config.ts']
+      exclude: [
+        '**/node_modules/**',
+        './public',
+        './.eslintrc.cjs',
+        './vitest.config.ts',
+        './next.config.mjs',
+        '.next/*',
+        './parser.ts',
+        '**/src/mocks'
+      ]
     }
   }
 });

@@ -3,6 +3,7 @@ import styles from './ThemeSwitch.module.css';
 import { ThemeContext } from '../../store/ThemeContext';
 import moon from '../../assets/img/moon.svg';
 import sun from '../../assets/img/sun.svg';
+import Image from 'next/image';
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -15,8 +16,8 @@ export function ThemeSwitch() {
     >
       <div className={styles.relative_wrapper}>
         <div className={`${styles.switch} ${theme === 'light' ? styles.light : styles.dark}`}>
-          <img src={moon} className={styles.theme_icon} alt="moon" />
-          <img src={sun} className={styles.theme_icon} alt="sun" />
+          <Image width={30} height={30} src={moon} className={styles.theme_icon} alt="moon" />
+          <Image width={30} height={30} src={sun} className={styles.theme_icon} alt="sun" />
         </div>
       </div>
     </div>

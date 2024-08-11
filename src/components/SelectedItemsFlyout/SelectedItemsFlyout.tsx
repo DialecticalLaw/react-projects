@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { convertToCsv } from '../../helpers/convertToCsv';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { clearSelectedItems } from '../../store/slices/selected_items_slice';
-import { Button } from '../Button/Button';
 import styles from './SelectedItemsFlyout.module.css';
+import { SelectedItemsContext } from '../../store/SelectedItemsContext';
+import { Button } from '../Button/Button';
 
 export function SelectedItemsFlyout() {
-  const selectedItems = useAppSelector((state) => state.selectedItems.items);
+  const { selectedItems, setSelectedItems } = useContext(SelectedItemsContext);
   const [href, setHref] = useState('');
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!selectedItems.length) return;
@@ -16,6 +14,8 @@ export function SelectedItemsFlyout() {
     setHref(link);
     return () => URL.revokeObjectURL(link);
   }, [selectedItems]);
+
+  if (!setSelectedItems) throw new Error('setSelectedItems is undefined');
 
   return (
     <div className={`${styles.wrapper} ${selectedItems.length ? styles.visible : ''}`}>
@@ -25,7 +25,7 @@ export function SelectedItemsFlyout() {
             <span className={styles.accent}>{selectedItems.length}</span> items are selected
           </p>
 
-          <Button type="button" onClick={() => dispatch(clearSelectedItems())}>
+          <Button type="button" onClick={() => setSelectedItems([])}>
             Unselect all
           </Button>
 

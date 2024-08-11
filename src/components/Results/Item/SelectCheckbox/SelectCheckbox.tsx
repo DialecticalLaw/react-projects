@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { Planet } from '../../../../services/planets';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { addItem, removeItem } from '../../../../store/slices/selected_items_slice';
 import styles from './SelectCheckbox.module.css';
 import { ThemeContext } from '../../../../store/ThemeContext';
+import { Planet } from '../../../../interfaces';
+import { SelectedItemsContext } from '../../../../store/SelectedItemsContext';
 
 export function SelectCheckbox({ item }: { item: Planet }) {
-  const selectedItems = useAppSelector((state) => state.selectedItems.items);
-  const dispatch = useAppDispatch();
+  const { selectedItems, setSelectedItems } = useContext(SelectedItemsContext);
   const { theme } = useContext(ThemeContext);
   const [isSelected, setSelected] = useState(false);
 
@@ -20,9 +18,10 @@ export function SelectCheckbox({ item }: { item: Planet }) {
   const toggleSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
     const eventTarget = e.target;
     if (!(eventTarget instanceof HTMLInputElement)) return;
+    if (!setSelectedItems) throw new Error('setSelectedItems is undefined');
     if (eventTarget.checked) {
-      dispatch(addItem(item));
-    } else dispatch(removeItem(item.url));
+      setSelectedItems(selectedItems.concat([item]));
+    } else setSelectedItems(selectedItems.filter((selectedItem) => selectedItem.url !== item.url));
   };
 
   return (
