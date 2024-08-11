@@ -28,8 +28,9 @@ module.exports = {
     // React
     {
       files: ['**/*.{js,jsx,ts,tsx}'],
-      plugins: ['react'],
+      plugins: ['react', 'react-compiler'],
       extends: ['plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:react-hooks/recommended'],
+      rules: { 'react-compiler/react-compiler': 'error' },
       settings: {
         react: {
           version: 'detect'
@@ -48,7 +49,7 @@ module.exports = {
     // Typescript
     {
       files: ['**/*.{ts,tsx}'],
-      plugins: ['@typescript-eslint', 'import'],
+      plugins: ['@typescript-eslint', 'import', 'react-compiler'],
       parser: '@typescript-eslint/parser',
       settings: {
         'import/internal-regex': '^~/',

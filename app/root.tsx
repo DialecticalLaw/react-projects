@@ -1,9 +1,9 @@
-import { Links, Meta, Scripts, useLoaderData } from '@remix-run/react';
-import globalCss from './global.css?url';
-import { json, LoaderFunctionArgs, LinksFunction } from '@remix-run/node';
+import { json, Meta, Scripts, useLoaderData } from '@remix-run/react';
+import { LoaderFunctionArgs } from '@remix-run/node';
 import { ApiResponse, Planet } from 'interfaces';
-
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: globalCss }];
+import { Home } from '../components/Home/Home';
+import './global.css';
+import { Providers } from '../components/Home/Providers';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const searchParams = new URL(request.url).searchParams;
@@ -22,20 +22,21 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 };
 
 export default function App() {
-  const { apiRes } = useLoaderData<typeof loader>();
-  console.log(apiRes);
+  const { apiRes, detailsRes } = useLoaderData<typeof loader>();
+  console.log(apiRes, detailsRes);
 
   return (
-    <html lang="en">
+    <html>
       <head>
         <link rel="icon" type="image/svg+xml" href="./planet.ico" />
         <title>Star Wars - Planets search</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
-        <Links />
       </head>
       <body>
-        <h1>Hello world!</h1>
+        <Providers>
+          <Home apiRes={apiRes} detailsRes={detailsRes} />
+        </Providers>
 
         <Scripts />
       </body>

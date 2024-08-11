@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "remix vite:dev",
+    "build": "remix vite:build",
+    "start": "remix-serve ./build/server/index.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format:fix": "prettier --write .",
@@ -46,6 +47,7 @@
     "prettier": "^3.3.2",
     "typescript": "^5.2.2",
     "vite": "^5.3.1",
+    "vite-tsconfig-paths": "^5.0.1",
     "vitest": "^2.0.2",
     "vitest-preview": "^0.0.1"
   },
