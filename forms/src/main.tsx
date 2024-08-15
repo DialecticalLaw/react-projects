@@ -6,6 +6,8 @@ import { Home } from './components/Home/Home.tsx';
 import { Background } from './components/Background/Background.tsx';
 import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
+import { Controlled } from './components/Controlled/Controlled.tsx';
+import { Uncontrolled } from './components/Uncontrolled/Uncontrolled.tsx';
 
 const router = createBrowserRouter([
   {
@@ -14,11 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: 'controlled',
-        element: <div />
+        element: <Controlled />
       },
       {
         path: 'uncontrolled',
-        element: <div />
+        element: <Uncontrolled />
       }
     ]
   }
