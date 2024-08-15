@@ -3,3 +3,12 @@
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --font: 'Belanosima', sans-serif;
+  --accent-color: rgb(76, 168, 255);
+}
+
+html {
+  font-size: 10px;
+}
