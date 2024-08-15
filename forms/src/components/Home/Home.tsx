@@ -11,6 +11,9 @@ export function Home() {
         >
           Controlled form
         </NavLink>
+        <NavLink className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`} to={'/'}>
+          Home
+        </NavLink>
         <NavLink
           className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
           to={'uncontrolled'}

@@ -1,6 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 2.5rem 0;
+}
+
 .header {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .link {
@@ -32,11 +44,4 @@
 .link.active::after {
   background-color: #ffffff;
   transform: scaleX(1);
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 2rem;
 }
