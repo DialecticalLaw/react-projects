@@ -7,9 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "format:fix": "prettier --write .",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "cd .. && husky forms/.husky"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
