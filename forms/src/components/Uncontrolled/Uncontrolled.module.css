@@ -8,7 +8,7 @@
   font-size: 2rem;
 }
 
-.password_wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -17,16 +17,33 @@
   outline: 0.2rem solid rgb(125, 125, 125);
 }
 
-.terms_conditions_wrapper,
 .gender_wrapper {
+  position: relative;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 3rem;
+  width: 100%;
+}
+
+.gender_wrapper::after {
+  content: '';
+  position: absolute;
+  height: 0.2rem;
+  width: 20%;
+  background-color: #ffffff;
+  inset: 0;
+  margin: auto;
+}
+
+.gender {
+  display: flex;
+  gap: 1.2rem;
 }
 
 .link {
   color: #ffffff;
-  font-weight: normal;
+  font-style: italic;
+  text-decoration: none;
 }
 
 .link:hover {
