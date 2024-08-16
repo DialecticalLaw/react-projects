@@ -1,14 +1,20 @@
+import { useAppSelector } from '../../store/hooks';
 import { Button } from '../Button/Button';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
 import styles from './Uncontrolled.module.css';
 
 export function Uncontrolled() {
+  const countries = useAppSelector((state) => state.data.countries);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <Input placeholder="John" id="name" name="name" label="Your name" type="text" />
       <Input placeholder="20" label="Your age" id="age" name="age" type="number" />
-      <Input placeholder="JohnSm@gmail.com" label="Your email" id="email" name="email" type="email" />
+      <Input placeholder="John@gmail.com" label="Your email" id="email" name="email" type="email" />
 
       <div className={styles.wrapper}>
         <Input name="password" id="password" label="Your password" type="password" />
@@ -16,12 +22,12 @@ export function Uncontrolled() {
       </div>
 
       <div className={styles.gender_wrapper}>
-        <label className={styles.gender}>
+        <label className={`${styles.gender} ${styles.male}`}>
           Male
           <input type="radio" name="gender" value="male" />
         </label>
 
-        <label className={styles.gender}>
+        <label className={`${styles.gender} ${styles.female}`}>
           Female
           <input type="radio" name="gender" value="female" />
         </label>
@@ -29,9 +35,9 @@ export function Uncontrolled() {
 
       <Input name="country" id="country" type="text" label="Choose your country" list="countries" />
       <datalist id="countries">
-        <option value="Russia"></option>
-        <option value="USA"></option>
-        <option value="China"></option>
+        {countries.map((country) => {
+          return <option key={country} value={country} />;
+        })}
       </datalist>
 
       <div className={styles.wrapper}>
@@ -48,7 +54,7 @@ export function Uncontrolled() {
         }
       />
 
-      <Button type="button">Submit</Button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 }

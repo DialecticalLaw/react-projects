@@ -18,26 +18,23 @@
 }
 
 .gender_wrapper {
-  position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
-}
-
-.gender_wrapper::after {
-  content: '';
-  position: absolute;
-  height: 0.2rem;
-  width: 20%;
-  background-color: #ffffff;
-  inset: 0;
-  margin: auto;
 }
 
 .gender {
   display: flex;
   gap: 1.2rem;
+}
+
+.male:has(:checked) {
+  color: rgb(78, 78, 255);
+}
+
+.female:has(:checked) {
+  color: rgb(255, 137, 157);
 }
 
 .link {
