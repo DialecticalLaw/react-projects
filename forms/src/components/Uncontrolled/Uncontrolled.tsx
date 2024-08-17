@@ -1,3 +1,5 @@
+import { ValidationError } from 'yup';
+import { formSchema } from '../../helpers/validationSchema';
 import { useAppSelector } from '../../store/hooks';
 import { Button } from '../Button/Button';
 import { Checkbox } from '../Checkbox/Checkbox';
@@ -6,8 +8,25 @@ import styles from './Uncontrolled.module.css';
 
 export function Uncontrolled() {
   const countries = useAppSelector((state) => state.data.countries);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      await formSchema.validate({
+        name: 'Vasya',
+        age: '20',
+        email: 'v.vasya@gmail.com',
+        password: 'ddd',
+        repeat_password: 'ddd',
+        gender: 'male',
+        country: 'Belarus',
+        isAgree: true
+      });
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        console.error(err.errors);
+      }
+    }
   };
 
   return (

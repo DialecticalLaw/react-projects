@@ -3,12 +3,12 @@ import { countries } from './countries';
 
 export interface FormData {
   name: string;
-  age: number;
+  age: string;
   email: string;
   password: string;
   repeat_password: string;
   gender: 'male' | 'female';
-  country: 'Russia' | 'USA' | 'China';
+  country: string[];
   isAgree: boolean;
 }
 
