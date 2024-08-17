@@ -11,9 +11,10 @@ export function Input({
   value,
   list,
   id,
-  placeholder
+  placeholder,
+  error
 }: {
-  type: 'text' | 'password' | 'number' | 'email';
+  type: 'text' | 'password' | 'number';
   label: string;
   classes?: string[];
   autoFocus?: boolean;
@@ -24,6 +25,7 @@ export function Input({
   list?: string;
   id: string;
   placeholder?: string;
+  error?: string;
 }) {
   return (
     <div className={styles.wrapper}>
@@ -40,7 +42,7 @@ export function Input({
         value={value}
         list={list}
       />
-      <p className={styles.error}>{}</p>
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 }

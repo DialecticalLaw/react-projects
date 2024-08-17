@@ -9,7 +9,7 @@ export const formSchema = object({
       name ? name[0] === name[0].toUpperCase() : false
     ),
   age: string().test('positive-number', 'Age must be a positive number', (age) => Number(age) > 0),
-  email: string().email('Incorrect email'),
+  email: string().required('Required field').email('Incorrect email'),
   password: string().required('Required field'),
   repeat_password: string()
     .required('Required field')

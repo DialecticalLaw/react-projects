@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -37,4 +38,16 @@
 .checkbox:checked ~ .filling {
   opacity: 1;
   transform: none;
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(120%);
+  text-align: center;
+  color: #ff0000;
+  font-size: 1.7rem;
+  font-weight: 300;
 }

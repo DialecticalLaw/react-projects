@@ -7,6 +7,7 @@ import { Input } from '../Input/Input';
 import styles from './Uncontrolled.module.css';
 import { useRef, useState } from 'react';
 import { FormData } from '../../store/data_slice';
+import { getErrorMessage } from '../../helpers/getErrorMessage';
 
 export function Uncontrolled() {
   const countries = useAppSelector((state) => state.data.countries);
@@ -43,6 +44,7 @@ export function Uncontrolled() {
 
     try {
       await formSchema.validate(values, { abortEarly: false });
+      setErrors(undefined);
     } catch (err) {
       if (err instanceof ValidationError) {
         setErrors(err.inner);
@@ -54,21 +56,46 @@ export function Uncontrolled() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <Input refLink={nameRef} placeholder="John" id="name" name="name" label="Your name" type="text" />
-      <Input refLink={ageRef} placeholder="20" label="Your age" id="age" name="age" type="number" />
       <Input
+        error={getErrorMessage(errors, 'name')}
+        refLink={nameRef}
+        placeholder="John"
+        id="name"
+        name="name"
+        label="Your name"
+        type="text"
+      />
+      <Input
+        error={getErrorMessage(errors, 'age')}
+        refLink={ageRef}
+        placeholder="20"
+        label="Your age"
+        id="age"
+        name="age"
+        type="number"
+      />
+      <Input
+        error={getErrorMessage(errors, 'email')}
         refLink={emailRef}
         placeholder="John@gmail.com"
         label="Your email"
         id="email"
         name="email"
-        type="email"
+        type="text"
       />
 
       <div className={styles.wrapper}>
-        <Input refLink={passwordRef} name="password" id="password" label="Your password" type="password" />
+        <Input
+          error={getErrorMessage(errors, 'password')}
+          refLink={passwordRef}
+          name="password"
+          id="password"
+          label="Your password"
+          type="password"
+        />
         <Input
           refLink={passwordRepeatRef}
+          error={getErrorMessage(errors, 'repeat_password')}
           name="repeat_password"
           id="repeat_password"
           label="Repeat"
@@ -86,9 +113,11 @@ export function Uncontrolled() {
           Female
           <input ref={genderFemaleRef} type="radio" name="gender" value="female" />
         </label>
+        <p className={styles.error}>{getErrorMessage(errors, 'gender')}</p>
       </div>
 
       <Input
+        error={getErrorMessage(errors, 'country')}
         refLink={countryRef}
         name="country"
         id="country"
@@ -108,6 +137,7 @@ export function Uncontrolled() {
       </div>
 
       <Checkbox
+        error={getErrorMessage(errors, 'isAgree')}
         refLink={isAgreeRef}
         id="agree"
         label={
