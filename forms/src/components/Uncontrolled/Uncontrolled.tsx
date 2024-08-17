@@ -5,54 +5,97 @@ import { Button } from '../Button/Button';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
 import styles from './Uncontrolled.module.css';
+import { useRef, useState } from 'react';
+import { FormData } from '../../store/data_slice';
 
 export function Uncontrolled() {
   const countries = useAppSelector((state) => state.data.countries);
+  const [errors, setErrors] = useState<ValidationError[]>();
+
+  const nameRef = useRef<HTMLInputElement>(null);
+  const ageRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const passwordRepeatRef = useRef<HTMLInputElement>(null);
+  const genderMaleRef = useRef<HTMLInputElement>(null);
+  const genderFemaleRef = useRef<HTMLInputElement>(null);
+  const countryRef = useRef<HTMLInputElement>(null);
+  const isAgreeRef = useRef<HTMLInputElement>(null);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    let gender: 'male' | 'female' | undefined;
+    if (genderMaleRef.current?.checked) gender = genderMaleRef.current?.value as 'male' | undefined;
+    if (genderFemaleRef.current?.checked) gender = genderFemaleRef.current?.value as 'female' | undefined;
+
+    const values: Partial<FormData> = {
+      name: nameRef.current?.value,
+      age: ageRef.current?.value,
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
+      repeat_password: passwordRepeatRef.current?.value,
+      gender,
+      country: countryRef.current?.value,
+      isAgree: isAgreeRef.current?.checked
+    };
+
+    console.log(values);
 
     try {
-      await formSchema.validate({
-        name: 'Vasya',
-        age: '20',
-        email: 'v.vasya@gmail.com',
-        password: 'ddd',
-        repeat_password: 'ddd',
-        gender: 'male',
-        country: 'Belarus',
-        isAgree: true
-      });
+      await formSchema.validate(values, { abortEarly: false });
     } catch (err) {
       if (err instanceof ValidationError) {
-        console.error(err.errors);
+        setErrors(err.inner);
       }
     }
   };
 
+  console.log(errors);
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <Input placeholder="John" id="name" name="name" label="Your name" type="text" />
-      <Input placeholder="20" label="Your age" id="age" name="age" type="number" />
-      <Input placeholder="John@gmail.com" label="Your email" id="email" name="email" type="email" />
+      <Input refLink={nameRef} placeholder="John" id="name" name="name" label="Your name" type="text" />
+      <Input refLink={ageRef} placeholder="20" label="Your age" id="age" name="age" type="number" />
+      <Input
+        refLink={emailRef}
+        placeholder="John@gmail.com"
+        label="Your email"
+        id="email"
+        name="email"
+        type="email"
+      />
 
       <div className={styles.wrapper}>
-        <Input name="password" id="password" label="Your password" type="password" />
-        <Input name="repeat_password" id="repeat_password" label="Repeat" type="password" />
+        <Input refLink={passwordRef} name="password" id="password" label="Your password" type="password" />
+        <Input
+          refLink={passwordRepeatRef}
+          name="repeat_password"
+          id="repeat_password"
+          label="Repeat"
+          type="password"
+        />
       </div>
 
       <div className={styles.gender_wrapper}>
         <label className={`${styles.gender} ${styles.male}`}>
           Male
-          <input type="radio" name="gender" value="male" />
+          <input ref={genderMaleRef} type="radio" name="gender" value="male" />
         </label>
 
         <label className={`${styles.gender} ${styles.female}`}>
           Female
-          <input type="radio" name="gender" value="female" />
+          <input ref={genderFemaleRef} type="radio" name="gender" value="female" />
         </label>
       </div>
 
-      <Input name="country" id="country" type="text" label="Choose your country" list="countries" />
+      <Input
+        refLink={countryRef}
+        name="country"
+        id="country"
+        type="text"
+        label="Choose your country"
+        list="countries"
+      />
       <datalist id="countries">
         {countries.map((country) => {
           return <option key={country} value={country} />;
@@ -65,6 +108,7 @@ export function Uncontrolled() {
       </div>
 
       <Checkbox
+        refLink={isAgreeRef}
         id="agree"
         label={
           <a className={styles.link} href="#">

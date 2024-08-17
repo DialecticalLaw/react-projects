@@ -8,7 +8,7 @@ export interface FormData {
   password: string;
   repeat_password: string;
   gender: 'male' | 'female';
-  country: string[];
+  country: string;
   isAgree: boolean;
 }
 

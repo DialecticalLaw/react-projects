@@ -40,6 +40,7 @@ export function Input({
         value={value}
         list={list}
       />
+      <p className={styles.error}>{}</p>
     </div>
   );
 }
