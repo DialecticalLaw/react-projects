@@ -95,7 +95,7 @@ export function Uncontrolled() {
           type="text"
         />
 
-        <div className={styles.wrapper}>
+        <div className={styles.password_wrapper}>
           <Input
             error={getErrorMessage(errors, 'password')}
             refLink={passwordRef}
@@ -143,7 +143,7 @@ export function Uncontrolled() {
           })}
         </datalist>
 
-        <div className={styles.wrapper}>
+        <div className={styles.picture_wrapper}>
           <label htmlFor="picture">Upload your picture (png/jpeg)</label>
           <input ref={pictureRef} id="picture" type="file" accept=".png,.jpeg" />
           <p className={styles.error}>{getErrorMessage(errors, 'pictures')}</p>
