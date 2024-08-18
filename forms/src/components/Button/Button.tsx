@@ -5,15 +5,22 @@ export function Button({
   children,
   type,
   classes,
-  onClick
+  onClick,
+  disabled
 }: {
   children: ReactNode;
   type: 'button' | 'submit';
   classes?: string[];
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  disabled?: boolean;
 }) {
   return (
-    <button onClick={onClick} type={type} className={`${styles.btn} ${classes?.join(' ')}`}>
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
+      className={`${styles.btn} ${classes?.join(' ')}`}
+    >
       {children}
     </button>
   );

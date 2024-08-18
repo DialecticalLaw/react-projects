@@ -104,7 +104,9 @@ export function Controlled() {
           }
         />
 
-        <Button type="submit">Submit</Button>
+        <Button disabled={!methods.formState.isValid} type="submit">
+          Submit
+        </Button>
       </form>
     </FormProvider>
   );

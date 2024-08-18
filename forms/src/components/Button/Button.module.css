@@ -25,3 +25,8 @@
   opacity: 1;
   transform: scale(1);
 }
+
+.btn[disabled] {
+  opacity: 0.4;
+  pointer-events: none;
+}
