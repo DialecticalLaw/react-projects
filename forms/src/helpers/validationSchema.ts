@@ -1,4 +1,4 @@
-import { boolean, object, ref, string } from 'yup';
+import { boolean, mixed, object, ref, string } from 'yup';
 import { countries } from '../store/countries';
 
 export const formSchema = object({
@@ -15,6 +15,13 @@ export const formSchema = object({
     .required('Required field')
     .oneOf([ref('password')], 'Passwords should match'),
   gender: string().required('Required field'),
+  pictures: mixed()
+    .test('required-field', 'Required field!', (pictures) => {
+      if (pictures instanceof FileList) return Boolean(pictures.length);
+    })
+    .test('picture-size', 'Files up to 1MB are allowed', (pictures) => {
+      if (pictures instanceof FileList && pictures[0] instanceof File) return pictures[0].size < 1024000;
+    }),
   isAgree: boolean().isTrue('Required field'),
   country: string().test('is-correct-country-name', 'Choose correct country name', (country) =>
     country ? countries.includes(country) : false

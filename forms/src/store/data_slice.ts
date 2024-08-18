@@ -9,6 +9,7 @@ export interface FormData {
   repeat_password: string;
   gender: 'male' | 'female';
   country: string;
+  picture: string;
   isAgree: boolean;
 }
 

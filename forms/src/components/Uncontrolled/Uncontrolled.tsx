@@ -6,7 +6,6 @@ import { Checkbox } from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
 import styles from './Uncontrolled.module.css';
 import { useRef, useState } from 'react';
-import { FormData } from '../../store/data_slice';
 import { getErrorMessage } from '../../helpers/getErrorMessage';
 
 export function Uncontrolled() {
@@ -21,6 +20,7 @@ export function Uncontrolled() {
   const genderMaleRef = useRef<HTMLInputElement>(null);
   const genderFemaleRef = useRef<HTMLInputElement>(null);
   const countryRef = useRef<HTMLInputElement>(null);
+  const pictureRef = useRef<HTMLInputElement>(null);
   const isAgreeRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +29,7 @@ export function Uncontrolled() {
     if (genderMaleRef.current?.checked) gender = genderMaleRef.current?.value as 'male' | undefined;
     if (genderFemaleRef.current?.checked) gender = genderFemaleRef.current?.value as 'female' | undefined;
 
-    const values: Partial<FormData> = {
+    const values = {
       name: nameRef.current?.value,
       age: ageRef.current?.value,
       email: emailRef.current?.value,
@@ -37,10 +37,9 @@ export function Uncontrolled() {
       repeat_password: passwordRepeatRef.current?.value,
       gender,
       country: countryRef.current?.value,
+      pictures: pictureRef.current?.files,
       isAgree: isAgreeRef.current?.checked
     };
-
-    console.log(values);
 
     try {
       await formSchema.validate(values, { abortEarly: false });
@@ -51,8 +50,6 @@ export function Uncontrolled() {
       }
     }
   };
-
-  console.log(errors);
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -132,8 +129,9 @@ export function Uncontrolled() {
       </datalist>
 
       <div className={styles.wrapper}>
-        <label htmlFor="avatar">Upload your picture (png/jpeg)</label>
-        <input id="avatar" type="file" accept="image/png, image/jpeg" />
+        <label htmlFor="picture">Upload your picture (png/jpeg)</label>
+        <input ref={pictureRef} id="picture" type="file" accept=".png,.jpeg" />
+        <p className={styles.error}>{getErrorMessage(errors, 'pictures')}</p>
       </div>
 
       <Checkbox
