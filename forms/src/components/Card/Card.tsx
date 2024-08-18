@@ -1,9 +1,9 @@
 import { FormData } from '../../store/data_slice';
 import styles from './Card.module.css';
 
-export function Card({ data }: { data: FormData }) {
+export function Card({ data, isPrevUpdated }: { data: FormData; isPrevUpdated: boolean }) {
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${isPrevUpdated ? styles.prev_updated : ''}`}>
       <p>Name: {data.name}</p>
       <p>Age: {data.age}</p>
       <p>Email: {data.email}</p>

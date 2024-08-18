@@ -4,7 +4,7 @@ import { Card } from '../Card/Card';
 import { useAppSelector } from '../../store/hooks';
 
 export function Home() {
-  const { controlled, uncontrolled } = useAppSelector((store) => store.data);
+  const { controlled, uncontrolled, prevFormUpdated } = useAppSelector((store) => store.data);
   const { pathname } = useLocation();
 
   return (
@@ -28,8 +28,8 @@ export function Home() {
       </header>
       {pathname === '/' ? (
         <div className={styles.cards}>
-          {controlled && <Card data={controlled} />}
-          {uncontrolled && <Card data={uncontrolled} />}
+          {controlled && <Card data={controlled} isPrevUpdated={prevFormUpdated === 'controlled'} />}
+          {uncontrolled && <Card data={uncontrolled} isPrevUpdated={prevFormUpdated === 'uncontrolled'} />}
         </div>
       ) : (
         <Outlet />

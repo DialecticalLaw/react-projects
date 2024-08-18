@@ -13,13 +13,14 @@ export interface FormData {
   isAgree: boolean;
 }
 
-type Forms = {
+type SliceData = {
   controlled?: FormData;
   uncontrolled?: FormData;
   countries: string[];
+  prevFormUpdated?: 'controlled' | 'uncontrolled';
 };
 
-const initialState: Forms = {
+const initialState: SliceData = {
   countries: countries
 };
 
@@ -29,9 +30,11 @@ export const dataSlice = createSlice({
   reducers: {
     updateUncontrolled(state, action: PayloadAction<FormData>) {
       state.uncontrolled = action.payload;
+      state.prevFormUpdated = 'uncontrolled';
     },
     updateControlled(state, action: PayloadAction<FormData>) {
       state.controlled = action.payload;
+      state.prevFormUpdated = 'controlled';
     }
   }
 });

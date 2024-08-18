@@ -12,6 +12,10 @@
   border-radius: 3rem;
 }
 
+.prev_updated {
+  animation: prev-updated 0.8s;
+}
+
 .picture_wrapper {
   display: flex;
   flex-direction: column;
@@ -24,4 +28,24 @@
 .picture {
   width: 20rem;
   height: 15rem;
+}
+
+@keyframes prev-updated {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(0.5rem, 0.5rem) rotate(5deg);
+  }
+  50% {
+    box-shadow: 0 0 2.5rem 0.5rem var(--accent-color);
+    transform: translate(0, 0) rotate(0eg);
+  }
+  75% {
+    transform: translate(-0.5rem, 0.5rem) rotate(-5deg);
+  }
+  100% {
+    box-shadow: none;
+    transform: translate(0, 0) rotate(0deg);
+  }
 }
