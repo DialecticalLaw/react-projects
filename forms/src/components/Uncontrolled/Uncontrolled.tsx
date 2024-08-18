@@ -1,6 +1,6 @@
 import { ValidationError } from 'yup';
 import { formSchema } from '../../helpers/validationSchema';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Button } from '../Button/Button';
 import { Checkbox } from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
@@ -9,9 +9,12 @@ import { useRef, useState } from 'react';
 import { getErrorMessage } from '../../helpers/getErrorMessage';
 import { passwordSchema } from '../../helpers/passwordSchema';
 import { PasswordStrength } from '../PasswordStrength/PasswordStrength';
+import { FormData, updateUncontrolled } from '../../store/data_slice';
+import { convertToBase64 } from '../../helpers/convertToBase64';
 
 export function Uncontrolled() {
   const countries = useAppSelector((state) => state.data.countries);
+  const dispatch = useAppDispatch();
   const [errors, setErrors] = useState<ValidationError[]>();
   const [strengthErrors, setStrengthErrors] = useState<ValidationError[] | 'init' | undefined>('init');
 
@@ -40,13 +43,26 @@ export function Uncontrolled() {
       repeat_password: passwordRepeatRef.current?.value,
       gender,
       country: countryRef.current?.value,
-      pictures: pictureRef.current?.files,
+      pictures: pictureRef.current?.files as FileList | null | undefined | string,
       isAgree: isAgreeRef.current?.checked
     };
 
     try {
       await formSchema.validate(values, { abortEarly: false });
+      const formData = {
+        name: values.name,
+        age: values.age,
+        email: values.email,
+        password: values.password,
+        repeat_password: values.repeat_password,
+        gender: values.gender,
+        country: values.country,
+        picture: await convertToBase64(values.pictures ? (values.pictures[0] as File) : undefined),
+        isAgree: values.isAgree
+      } as FormData;
+
       setErrors(undefined);
+      dispatch(updateUncontrolled(formData));
     } catch (err) {
       if (err instanceof ValidationError) {
         setErrors(err.inner);
