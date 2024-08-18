@@ -1,0 +1,4 @@
+# forms/.husky/pre-commit
+cd forms
+
+npm run lint

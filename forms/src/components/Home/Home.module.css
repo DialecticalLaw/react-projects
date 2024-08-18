@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5rem;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 2.5rem 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.link {
+  position: relative;
+  font-family: var(--font);
+  font-size: 3.5rem;
+  text-decoration: none;
+  color: rgb(189, 189, 189);
+  transition: 0.3s;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100%;
+  height: 0.2rem;
+  background-color: rgb(189, 189, 189);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: 0.3s;
+}
+
+.active {
+  color: #ffffff;
+}
+
+.link.active::after {
+  background-color: #ffffff;
+  transform: scaleX(1);
+}
+
+.cards {
+  display: flex;
+  gap: 5rem;
+}
