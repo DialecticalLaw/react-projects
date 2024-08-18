@@ -7,10 +7,13 @@ import { Input } from '../Input/Input';
 import styles from './Uncontrolled.module.css';
 import { useRef, useState } from 'react';
 import { getErrorMessage } from '../../helpers/getErrorMessage';
+import { passwordSchema } from '../../helpers/passwordSchema';
+import { PasswordStrength } from '../PasswordStrength/PasswordStrength';
 
 export function Uncontrolled() {
   const countries = useAppSelector((state) => state.data.countries);
   const [errors, setErrors] = useState<ValidationError[]>();
+  const [strengthErrors, setStrengthErrors] = useState<ValidationError[] | 'init' | undefined>('init');
 
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
@@ -47,6 +50,15 @@ export function Uncontrolled() {
     } catch (err) {
       if (err instanceof ValidationError) {
         setErrors(err.inner);
+      }
+    }
+
+    try {
+      await passwordSchema.validate(values.password, { abortEarly: false });
+      setStrengthErrors(undefined);
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        setStrengthErrors(err.inner);
       }
     }
   };
@@ -100,6 +112,7 @@ export function Uncontrolled() {
             label="Repeat"
             type="password"
           />
+          <PasswordStrength strengthErrors={strengthErrors} />
         </div>
 
         <div className={styles.gender_wrapper}>
