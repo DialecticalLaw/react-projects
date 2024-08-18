@@ -52,100 +52,103 @@ export function Uncontrolled() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <Input
-        error={getErrorMessage(errors, 'name')}
-        refLink={nameRef}
-        placeholder="John"
-        id="name"
-        name="name"
-        label="Your name"
-        type="text"
-      />
-      <Input
-        error={getErrorMessage(errors, 'age')}
-        refLink={ageRef}
-        placeholder="20"
-        label="Your age"
-        id="age"
-        name="age"
-        type="number"
-      />
-      <Input
-        error={getErrorMessage(errors, 'email')}
-        refLink={emailRef}
-        placeholder="John@gmail.com"
-        label="Your email"
-        id="email"
-        name="email"
-        type="text"
-      />
-
-      <div className={styles.wrapper}>
+    <>
+      <div className={styles.light} />
+      <form onSubmit={handleSubmit} className={styles.form}>
         <Input
-          error={getErrorMessage(errors, 'password')}
-          refLink={passwordRef}
-          name="password"
-          id="password"
-          label="Your password"
-          type="password"
+          error={getErrorMessage(errors, 'name')}
+          refLink={nameRef}
+          placeholder="John"
+          id="name"
+          name="name"
+          label="Your name"
+          type="text"
         />
         <Input
-          refLink={passwordRepeatRef}
-          error={getErrorMessage(errors, 'repeat_password')}
-          name="repeat_password"
-          id="repeat_password"
-          label="Repeat"
-          type="password"
+          error={getErrorMessage(errors, 'age')}
+          refLink={ageRef}
+          placeholder="20"
+          label="Your age"
+          id="age"
+          name="age"
+          type="number"
         />
-      </div>
+        <Input
+          error={getErrorMessage(errors, 'email')}
+          refLink={emailRef}
+          placeholder="John@gmail.com"
+          label="Your email"
+          id="email"
+          name="email"
+          type="text"
+        />
 
-      <div className={styles.gender_wrapper}>
-        <label className={`${styles.gender} ${styles.male}`}>
-          Male
-          <input ref={genderMaleRef} type="radio" name="gender" value="male" />
-        </label>
+        <div className={styles.wrapper}>
+          <Input
+            error={getErrorMessage(errors, 'password')}
+            refLink={passwordRef}
+            name="password"
+            id="password"
+            label="Your password"
+            type="password"
+          />
+          <Input
+            refLink={passwordRepeatRef}
+            error={getErrorMessage(errors, 'repeat_password')}
+            name="repeat_password"
+            id="repeat_password"
+            label="Repeat"
+            type="password"
+          />
+        </div>
 
-        <label className={`${styles.gender} ${styles.female}`}>
-          Female
-          <input ref={genderFemaleRef} type="radio" name="gender" value="female" />
-        </label>
-        <p className={styles.error}>{getErrorMessage(errors, 'gender')}</p>
-      </div>
+        <div className={styles.gender_wrapper}>
+          <label className={`${styles.gender} ${styles.male}`}>
+            Male
+            <input ref={genderMaleRef} type="radio" name="gender" value="male" />
+          </label>
 
-      <Input
-        error={getErrorMessage(errors, 'country')}
-        refLink={countryRef}
-        name="country"
-        id="country"
-        type="text"
-        label="Choose your country"
-        list="countries"
-      />
-      <datalist id="countries">
-        {countries.map((country) => {
-          return <option key={country} value={country} />;
-        })}
-      </datalist>
+          <label className={`${styles.gender} ${styles.female}`}>
+            Female
+            <input ref={genderFemaleRef} type="radio" name="gender" value="female" />
+          </label>
+          <p className={styles.error}>{getErrorMessage(errors, 'gender')}</p>
+        </div>
 
-      <div className={styles.wrapper}>
-        <label htmlFor="picture">Upload your picture (png/jpeg)</label>
-        <input ref={pictureRef} id="picture" type="file" accept=".png,.jpeg" />
-        <p className={styles.error}>{getErrorMessage(errors, 'pictures')}</p>
-      </div>
+        <Input
+          error={getErrorMessage(errors, 'country')}
+          refLink={countryRef}
+          name="country"
+          id="country"
+          type="text"
+          label="Choose your country"
+          list="countries"
+        />
+        <datalist id="countries">
+          {countries.map((country) => {
+            return <option key={country} value={country} />;
+          })}
+        </datalist>
 
-      <Checkbox
-        error={getErrorMessage(errors, 'isAgree')}
-        refLink={isAgreeRef}
-        id="agree"
-        label={
-          <a className={styles.link} href="#">
-            I accept Terms and Conditions agreement
-          </a>
-        }
-      />
+        <div className={styles.wrapper}>
+          <label htmlFor="picture">Upload your picture (png/jpeg)</label>
+          <input ref={pictureRef} id="picture" type="file" accept=".png,.jpeg" />
+          <p className={styles.error}>{getErrorMessage(errors, 'pictures')}</p>
+        </div>
 
-      <Button type="submit">Submit</Button>
-    </form>
+        <Checkbox
+          error={getErrorMessage(errors, 'isAgree')}
+          refLink={isAgreeRef}
+          id="agree"
+          label={
+            <a className={styles.link} href="#">
+              I accept Terms and Conditions agreement
+            </a>
+          }
+        />
+
+        <Button type="submit">Submit</Button>
+      </form>
+    </>
   );
 }
