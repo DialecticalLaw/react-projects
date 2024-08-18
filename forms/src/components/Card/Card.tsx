@@ -15,7 +15,7 @@ export function Card({ data }: { data: FormData }) {
         <p>Picture:</p>
         <img className={styles.picture} src={data.picture} />
       </div>
-      <p>Is agree: {data.isAgree}</p>
+      <p>Is agree: {data.isAgree.toString()}</p>
     </div>
   );
 }

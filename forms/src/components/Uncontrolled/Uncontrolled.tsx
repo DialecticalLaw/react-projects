@@ -3,7 +3,7 @@ import { formSchema } from '../../helpers/validationSchema';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { Button } from '../Button/Button';
 import { Checkbox } from '../Checkbox/Checkbox';
-import { Input } from '../Input/Input';
+import { Input } from './Input/Input';
 import styles from './Uncontrolled.module.css';
 import { useRef, useState } from 'react';
 import { getErrorMessage } from '../../helpers/getErrorMessage';
