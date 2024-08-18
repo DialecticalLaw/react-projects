@@ -22,12 +22,16 @@ export function PasswordStrength({ strengthErrors }: { strengthErrors?: Validati
         <div className={styles.cell} />
         <div className={styles.cell} />
       </div>
-      {typeof strengthErrors === 'object' &&
-        strengthErrors?.map((err) => (
-          <p className={styles.error} key={err.message}>
-            {err.message}
-          </p>
-        ))}
+      {typeof strengthErrors === 'object' && (
+        <>
+          <p className={styles.errors_title}>Recommendations:</p>
+          {strengthErrors?.map((err) => (
+            <p className={styles.error} key={err.message}>
+              {err.message}
+            </p>
+          ))}
+        </>
+      )}
     </>
   );
 }
