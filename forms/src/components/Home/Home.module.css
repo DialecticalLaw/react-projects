@@ -45,3 +45,8 @@
   background-color: #ffffff;
   transform: scaleX(1);
 }
+
+.cards {
+  display: flex;
+  gap: 5rem;
+}

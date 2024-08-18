@@ -11,10 +11,12 @@ import { passwordSchema } from '../../helpers/passwordSchema';
 import { PasswordStrength } from '../PasswordStrength/PasswordStrength';
 import { FormData, updateUncontrolled } from '../../store/data_slice';
 import { convertToBase64 } from '../../helpers/convertToBase64';
+import { useNavigate } from 'react-router-dom';
 
 export function Uncontrolled() {
   const countries = useAppSelector((state) => state.data.countries);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [errors, setErrors] = useState<ValidationError[]>();
   const [strengthErrors, setStrengthErrors] = useState<ValidationError[] | 'init' | undefined>('init');
 
@@ -48,6 +50,15 @@ export function Uncontrolled() {
     };
 
     try {
+      await passwordSchema.validate(values.password, { abortEarly: false });
+      setStrengthErrors(undefined);
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        setStrengthErrors(err.inner);
+      }
+    }
+
+    try {
       await formSchema.validate(values, { abortEarly: false });
       const formData = {
         name: values.name,
@@ -63,18 +74,10 @@ export function Uncontrolled() {
 
       setErrors(undefined);
       dispatch(updateUncontrolled(formData));
+      navigate('/');
     } catch (err) {
       if (err instanceof ValidationError) {
         setErrors(err.inner);
-      }
-    }
-
-    try {
-      await passwordSchema.validate(values.password, { abortEarly: false });
-      setStrengthErrors(undefined);
-    } catch (err) {
-      if (err instanceof ValidationError) {
-        setStrengthErrors(err.inner);
       }
     }
   };

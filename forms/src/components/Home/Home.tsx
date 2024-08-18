@@ -1,7 +1,12 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import styles from './Home.module.css';
+import { Card } from '../Card/Card';
+import { useAppSelector } from '../../store/hooks';
 
 export function Home() {
+  const { controlled, uncontrolled } = useAppSelector((store) => store.data);
+  const { pathname } = useLocation();
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
@@ -21,7 +26,14 @@ export function Home() {
           Uncontrolled form
         </NavLink>
       </header>
-      <Outlet />
+      {pathname === '/' ? (
+        <div className={styles.cards}>
+          {controlled && <Card data={controlled} />}
+          {uncontrolled && <Card data={uncontrolled} />}
+        </div>
+      ) : (
+        <Outlet />
+      )}
     </div>
   );
 }
