@@ -1,4 +1,4 @@
-export function convertToBase64(file?: File): Promise<string> | undefined {
+export function convertToBase64(file?: File): Promise<string> {
   if (!file) throw new Error('file not found');
   const reader = new FileReader();
   reader.readAsDataURL(file);

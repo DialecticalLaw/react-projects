@@ -45,7 +45,7 @@ export function Uncontrolled() {
       repeat_password: passwordRepeatRef.current?.value,
       gender,
       country: countryRef.current?.value,
-      pictures: pictureRef.current?.files as FileList | null | undefined | string,
+      picture: pictureRef.current?.files as FileList | null | undefined | string,
       isAgree: isAgreeRef.current?.checked
     };
 
@@ -68,7 +68,7 @@ export function Uncontrolled() {
         repeat_password: values.repeat_password,
         gender: values.gender,
         country: values.country,
-        picture: await convertToBase64(values.pictures ? (values.pictures[0] as File) : undefined),
+        picture: await convertToBase64(values.picture ? (values.picture[0] as File) : undefined),
         isAgree: values.isAgree
       } as FormData;
 
@@ -91,7 +91,6 @@ export function Uncontrolled() {
           refLink={nameRef}
           placeholder="John"
           id="name"
-          name="name"
           label="Your name"
           type="text"
         />
@@ -101,7 +100,6 @@ export function Uncontrolled() {
           placeholder="20"
           label="Your age"
           id="age"
-          name="age"
           type="number"
         />
         <Input
@@ -110,7 +108,6 @@ export function Uncontrolled() {
           placeholder="John@gmail.com"
           label="Your email"
           id="email"
-          name="email"
           type="text"
         />
 
@@ -118,7 +115,6 @@ export function Uncontrolled() {
           <Input
             error={getErrorMessage(errors, 'password')}
             refLink={passwordRef}
-            name="password"
             id="password"
             label="Your password"
             type="password"
@@ -126,7 +122,6 @@ export function Uncontrolled() {
           <Input
             refLink={passwordRepeatRef}
             error={getErrorMessage(errors, 'repeat_password')}
-            name="repeat_password"
             id="repeat_password"
             label="Repeat"
             type="password"
@@ -150,7 +145,6 @@ export function Uncontrolled() {
         <Input
           error={getErrorMessage(errors, 'country')}
           refLink={countryRef}
-          name="country"
           id="country"
           type="text"
           label="Choose your country"
@@ -165,7 +159,7 @@ export function Uncontrolled() {
         <div className={styles.picture_wrapper}>
           <label htmlFor="picture">Upload your picture (png/jpeg)</label>
           <input ref={pictureRef} id="picture" type="file" accept=".png,.jpeg" />
-          <p className={styles.error}>{getErrorMessage(errors, 'pictures')}</p>
+          <p className={styles.error}>{getErrorMessage(errors, 'picture')}</p>
         </div>
 
         <Checkbox

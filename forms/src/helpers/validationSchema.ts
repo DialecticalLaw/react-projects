@@ -17,7 +17,7 @@ const repeat_password = string()
   .oneOf([ref('password')], 'Passwords should match');
 
 const gender = string().required('Required field');
-const pictures = mixed()
+const picture = mixed()
   .test('required-field', 'Required field!', (pictures) => {
     if (pictures instanceof FileList) return Boolean(pictures.length);
   })
@@ -37,7 +37,7 @@ export const formSchema = object({
   password,
   repeat_password,
   gender,
-  pictures,
+  picture,
   isAgree,
   country
 });
